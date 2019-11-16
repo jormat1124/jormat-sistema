@@ -21,6 +21,12 @@
     <center><br><br><img src="image/trabajo2.jpg" width="800" height="500" alt="Los Angeles">></center>
     </div>
   </div>
+  </div>
+    <div class="carousel-item">
+    <center><br><br><img src="image/trabajo2.jpg" width="800" height="500" alt="Los Angeles">></center>
+    </div>
+  </div>
+
 
   <a class="carousel-control-prev" href="#demo" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
