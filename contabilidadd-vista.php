@@ -4,7 +4,7 @@
  ini_set('date.timezone','America/Santo_Domingo');
 $horal = date("H",time());
 
-
+$horal = 22;
 
 if($horal >16 & $horal <24){
 
@@ -26,6 +26,8 @@ $resultado1 = mysqli_query($conn,$query1);
 $query2 = "SELECT * FROM ingreso where (socio = '$nombre' and tipo_ingreso = 'negocio') and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
 $resultado2 = mysqli_query($conn,$query2);
 
+$query3 = "SELECT * FROM ingreso where (tipo_ingreso = 'recarga') and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
+$resultado3 = mysqli_query($conn,$query3);
 
 $query4 = "SELECT * FROM factura where (socio = '$nombre') and fecha_venta BETWEEN '$fecha1' and '$fecha2'";
 $resultado4 = mysqli_query($conn,$query4);
@@ -61,11 +63,12 @@ $resultado4 = mysqli_query($conn,$query4);
     <tr>
     <td>Ventas</td>
     <?php $total4=0; while($row4 = mysqli_fetch_array($resultado4)){$total4=$total4+$row4['total_venta'];} ?>
+    <?php $total3=0; while($row3 = mysqli_fetch_array($resultado3)){$total3=$total3+$row3['cantidad'];} ?>
     <td><?php echo $total4  ?></td> 
     </tr>
 
       <tr>
-        <th><h2 style="color:#9C2C2E">Ingresos X: $<?php echo $total1+$total2;?>.00 </h2><h2 style="color:#9C2C2E">Ventas: $<?php echo $total4;?>.00 </h2><br><i style="color:#CB2629">Nota: Los Ingresos X y las ventas se encuentran dentro de la contabilidad, por lo cual hay que ponerlo aparte.</i></th>  
+        <th><h2 style="color:#9C2C2E">Ingresos X: $<?php echo $total1+$total2;?> </h2><h2 style="color:#9C2C2E">Ventas: $<?php echo $total4;?> </h2><h2 style="color:#9C2C2E">Recargas: $<?php echo $total3;?> </h2><br><i style="color:#CB2629">Nota: Los Ingresos X y las ventas se encuentran dentro de la contabilidad, por lo cual hay que ponerlo aparte.</i></th>  
         <th><a href="ingresonegocio-vista.php"  class="btn btn-danger"> Verificar Ingresos</a><a href="informe-venta.php"  class="btn btn-warning"> Verificar Ventas </a></th>
     
      </tr>
