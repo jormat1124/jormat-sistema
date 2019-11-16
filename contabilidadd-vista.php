@@ -4,8 +4,6 @@
  ini_set('date.timezone','America/Santo_Domingo');
 $horal = date("H",time());
 
-$horal = 22;
-
 if($horal >16 & $horal <24){
 
 $nombre = $_SESSION['nombre'];
@@ -68,7 +66,7 @@ $resultado4 = mysqli_query($conn,$query4);
     </tr>
 
       <tr>
-        <th><h2 style="color:#9C2C2E">Ingresos X: $<?php echo $total1+$total2;?> </h2><h2 style="color:#9C2C2E">Ventas: $<?php echo $total4;?> </h2><h2 style="color:#9C2C2E">Recargas: $<?php echo $total3;?> </h2><br><i style="color:#CB2629">Nota: Los Ingresos X y las ventas se encuentran dentro de la contabilidad, por lo cual hay que ponerlo aparte.</i></th>  
+        <th><h2 style="color:#9C2C2E">Ingresos X: $<?php echo $total1+$total2;?> </h2><h2 style="color:#9C2C2E">Ventas: $<?php echo $total4;?> </h2></h2><h2 style="color:#9C2C2E">Recargas turno anterior: $<?php echo $total3;?> </h2><br><i style="color:#CB2629">Nota: Las recargas se encuentrar dentro de la contabilidad, solo se muestra para que pueda sacar el total de la misma y ponerlo de forma individual, los Ingresos X y las ventas se encuentran dentro de la contabilidad, por lo cual hay que ponerlo aparte.</i></th>  
         <th><a href="ingresonegocio-vista.php"  class="btn btn-danger"> Verificar Ingresos</a><a href="informe-venta.php"  class="btn btn-warning"> Verificar Ventas </a></th>
     
      </tr>
