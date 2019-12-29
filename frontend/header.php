@@ -47,11 +47,28 @@
     
             <ul class="list-unstyled CTAs">
                 <br><br><br>
+
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <a href="#mventas" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Ventas</a>
+                    <ul class="collapse list-unstyled" id="mventas">
+
+                    
+                    <a  href="articulo-vista.php" >Articulos</a>
+                    <a href="pendiente-vista.php" >Averiados</a>
+                    <a  href="informe-venta.php" >Informe de Ventas</a>
+                    </ul>
+                
+                </li>
+
+                <li class="active">
+                    <a href="#mnegocio" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Negocio</a>
+                    <ul class="collapse list-unstyled" id="mnegocio">
                         <li>
-                            <a href="#">Home 1</a>
+                        <a href="gastonegocio-vista.php" >Gasto Negocio</a>
+                        <?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
+                        <a  href="inversion-vista.php" >Realizar Inversión</a>
+                        <?php break;}}?>
+                    
                         </li>
                      
                     </ul>
@@ -108,6 +125,12 @@
                         <a class="dropdown-item" href="aefectivo-vista.php" >
                         <i class="fa fa-plus-circle" aria-hidden="true"></i> Avance Efectivo
                         </a>
+
+                        <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                         
+                        <a class="dropdown-item" href="reclamo-vista.php" >
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Propuesta
+                        </a>
                                      
                          <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
                             
@@ -121,16 +144,13 @@
                          <i class="fa fa-lock-open"></i> Cambiar Contraceña
                         </a>
 
-                        <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
-                        
-                        <a class="dropdown-item" href="#ventana1" data-toggle="modal" >
-                         <i class="fa fa-lock-open"></i> 
-                        </a>
 
+                        <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                        <!--Para actualizar la hora actual--> 
                         <?php ini_set('date.timezone','America/Santo_Domingo'); $hora = date("H",time()); ?>
-                        <?php if($hora < 12){ ?><a href="#ventana2" class="navbar-brand" data-toggle="modal"><img src="image/apagado.png" width="50" height="50" class="d-inline-block align-top "border-radius=25px alt=""></a>
-                        <?php } if($hora >=12 & $hora <=15){ ?><a href="#ventana3" class="navbar-brand" data-toggle="modal"><img src="image/apagado.png" width="50" height="50" class="d-inline-block align-top "border-radius=25px alt=""></a>
-                        <?php }if($hora >=16 & $hora <=23){?><a href="#ventana4" class="navbar-brand" data-toggle="modal"><img src="image/apagado.png" width="50" height="50" class="d-inline-block align-top "border-radius=25px alt=""></a>
+                        <!--Opciones de break y salir con horario estatico--> 
+                        <?php if($hora >=12 & $hora <=15){ ?><a href="#ventana3" class="dropdown-item" data-toggle="modal"><i class="fas fa-coffee"></i> Receso</a>
+                        <?php }if($hora >=16 & $hora <=23){?><a href="#ventana4" class="dropdown-item" data-toggle="modal"><i class="fas fa-times "></i> Close</a>
                         <?php } ?>
 
                         
@@ -142,7 +162,7 @@
 
      
         </nav>
-        <div class="modal fade" id="ventana1">
+<div class="modal fade" id="ventana1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -160,26 +180,7 @@
         </div>
     </div>
 </div>
-
-
-<div class="modal fade" id="ventana2">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Notificación</h5>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <p>Su break es a partir de las 12:00PM</p> 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Retroceder</button>
-            </div>
-        </div>
-    </div>
-</div>
-       
+      
 <div class="modal fade" id="ventana3">
     <div class="modal-dialog">
         <div class="modal-content">
