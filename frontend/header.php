@@ -54,8 +54,8 @@
 
                     
                     <a  href="articulo-vista.php" >Articulos</a>
-                    <a href="pendiente-vista.php" >Averiados</a>
-                    <a  href="informe-venta.php" >Informe de Ventas</a>
+                 
+                    
                     </ul>
                 
                 </li>
@@ -63,28 +63,36 @@
                 <li class="active">
                     <a href="#mnegocio" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Negocio</a>
                     <ul class="collapse list-unstyled" id="mnegocio">
-                        <li>
-                        <a href="gastonegocio-vista.php" >Gasto Negocio</a>
+
+                        <li><a href="gastonegocio-vista.php" >Gasto Negocio</a></li>
                         <?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
-                        <a  href="inversion-vista.php" >Realizar Inversión</a>
+                        <li class="nav-item- active"> <a  href="inversion-vista.php" >Realizar Inversión</a></li>
+                        <li class="nav-item- active"><a class=" nav-link"href="socio-vista.php">Recompensa</a></li>
                         <?php break;}}?>
-                    
+                        <li><a href="consultainversion-vista.php" >Presupuesto Inversion</a></li>
+                        
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="#mhogares" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Hogares</a>
+                    <ul class="collapse list-unstyled" id="mhogares">
+                        <li>
+                            <a href="#">En proceso</a>
                         </li>
                      
                     </ul>
                 </li>
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <a href="#minformes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Informes</a>
+                    <ul class="collapse list-unstyled" id="minformes">
                         <li>
-                            <a href="#">Home 1</a>
+                        <a  href="informe-venta.php" >Informe de Ventas</a>
                         </li>
                      
                     </ul>
                 </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
+                <li class="nav-item- active"><a class=" nav-link"href="contactos-vista.php">Contactos</a></li>
+         <li class="nav-item- active"><a class=" nav-link"href="informacion-vista.php">Informacion</a></li>
             </ul>
             
            
