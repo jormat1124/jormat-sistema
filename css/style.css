@@ -34,21 +34,19 @@ a:focus {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    background: #439ad3;
+    min-width: 230px;
+    max-width: 230px;
+    background: #62a9d8;
     color: rgb(17, 16, 16);
     transition: all 0.3s;
+    
 }
 
 #sidebar.active {
     margin-left: -250px;
 }
 
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #2395e0;
-}
+
 
 #sidebar ul.components {
     padding: 20px 0;
@@ -67,14 +65,14 @@ a:focus {
 }
 
 #sidebar ul li a:hover {
-    color: rgb(91, 95, 110);
-    background: #fff;
+    color: rgb(0, 0, 0);
+    background: rgb(223, 101, 101);
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #fff;
-    background: #879bf3;
+    color: rgb(0, 0, 0);
+  
 }
 
 a[data-toggle="collapse"] {
@@ -102,8 +100,8 @@ ul.CTAs {
 
 
 a.download {
-    background: #fff;
-    color: #7386D5;
+    background: rgb(170, 77, 77);
+    color: rgb(10, 177, 228);
 }
 
 a.article,
