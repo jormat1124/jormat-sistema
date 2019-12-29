@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
 
 <!--Script y stilos para el sidebar-->
+
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
  <link rel="stylesheet" href="css/style.css">
@@ -85,7 +86,7 @@
                     
             </button>
              <!--Opciones vasicas--> 
-            <a class="navbar-brand d-none d-sm-inline "href="principal-vista.php">Jormat System</a>
+            <a class="navbar-brand d-none d-sm-inline "href="principal-vista.php"> Jormat System</a>
             <a class="navbar-brand d-none d-sm-inline"href="factura-vista.php"><i class="fa fa-shopping-bag fa-1x"></i> Vender</a>
             <a class="navbar-brand d-none d-sm-inline"href="ingreso-vista.php"><i class="fa fa-plus-circle fa-1x"></i> Ingreso</a>
 
@@ -98,63 +99,125 @@
             
             <div class="action-menu-trigger">
                     <div class="dropdown">
-                        <a href="#" tabindex="0" data-toggle="dropdown" role="button" class="navbar-brand">
-                        <i class="fa fa-cog fa-2x"></i>
+                        <a href="#" tabindex="0" data-toggle="dropdown" role="button" class="navbar-brand"><i class="fa fa-users-cog fa-2x"></i></a>
+                            
+                        <!--Menu de opciones para los usuarios--->
+                        <div class="dropdown-menu dropdown-menu-right menu  align-tr-br" id="action-menu-1-menu" data-rel="menu-content" aria-labelledby="action-menu-toggle-1" role="menu" data-align="tr-br" id="dropdown-menu-1">
+                            
                         
+                        <a class="dropdown-item" href="aefectivo-vista.php" >
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Avance Efectivo
                         </a>
-                            <div class="dropdown-menu dropdown-menu-right menu  align-tr-br" id="action-menu-1-menu" data-rel="menu-content" aria-labelledby="action-menu-toggle-1" role="menu" data-align="tr-br" id="dropdown-menu-1">
-                                        <a href="https://itla.edu.do/virtual/cv/my/" class="dropdown-item menu-action" role="menuitem" data-title="mymoodle,admin" aria-labelledby="actionmenuaction-1">
-                                                <i class="icon fa fa-tachometer fa-fw " aria-hidden="true"  ></i>
-                                            <span class="menu-action-text" id="actionmenuaction-1">
-                                                Dashboard
-                                            </span>
-                                        </a>
-                                        <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
-                                        <a href="https://itla.edu.do/virtual/cv/user/profile.php?id=1699" class="dropdown-item menu-action" role="menuitem" data-title="profile,moodle" aria-labelledby="actionmenuaction-2">
-                                                <i class="icon fa fa-user fa-fw " aria-hidden="true"  ></i>
-                                            <span class="menu-action-text" id="actionmenuaction-2">
-                                                Profile
-                                            </span>
-                                        </a>
-                                        <a href="https://itla.edu.do/virtual/cv/grade/report/overview/index.php" class="dropdown-item menu-action" role="menuitem" data-title="grades,grades" aria-labelledby="actionmenuaction-3">
-                                                <i class="icon fa fa-table fa-fw " aria-hidden="true"  ></i>
-                                            <span class="menu-action-text" id="actionmenuaction-3">
-                                                Grades
-                                            </span>
-                                        </a>
-                                        <a href="https://itla.edu.do/virtual/cv/message/index.php" class="dropdown-item menu-action" role="menuitem" data-title="messages,message" aria-labelledby="actionmenuaction-4">
-                                                <i class="icon fa fa-comment fa-fw " aria-hidden="true"  ></i>
-                                            <span class="menu-action-text" id="actionmenuaction-4">
-                                                Messages
-                                            </span>
-                                        </a>
-                                        <a href="https://itla.edu.do/virtual/cv/user/preferences.php" class="dropdown-item menu-action" role="menuitem" data-title="preferences,moodle" aria-labelledby="actionmenuaction-5">
-                                                <i class="icon fa fa-wrench fa-fw " aria-hidden="true"  ></i>
-                                            <span class="menu-action-text" id="actionmenuaction-5">
-                                                Preferences
-                                            </span>
-                                        </a>
-                                        <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
-                                        <a href="https://itla.edu.do/virtual/cv/login/logout.php?sesskey=5x2zoRPNbS" class="dropdown-item menu-action" role="menuitem" data-title="logout,moodle" aria-labelledby="actionmenuaction-6">
-                                                <i class="icon fa fa-sign-out fa-fw " aria-hidden="true"  ></i>
-                                            <span class="menu-action-text" id="actionmenuaction-6">
-                                                Log out
-                                            </span>
-                                        </a>
-                            </div>
+                                     
+                         <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                            
+                         <a class="dropdown-item" href="consultaavance-vista.php" >
+                         <i class="fa fa-chart-bar"></i> Mostrar Avances
+                        </a>
+                        
+                        <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                        
+                        <a class="dropdown-item" href="#ventana1" data-toggle="modal" >
+                         <i class="fa fa-lock-open"></i> Cambiar Contraceña
+                        </a>
+
+                        <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                        
+                        <a class="dropdown-item" href="#ventana1" data-toggle="modal" >
+                         <i class="fa fa-lock-open"></i> 
+                        </a>
+
+                        <?php ini_set('date.timezone','America/Santo_Domingo'); $hora = date("H",time()); ?>
+                        <?php if($hora < 12){ ?><a href="#ventana2" class="navbar-brand" data-toggle="modal"><img src="image/apagado.png" width="50" height="50" class="d-inline-block align-top "border-radius=25px alt=""></a>
+                        <?php } if($hora >=12 & $hora <=15){ ?><a href="#ventana3" class="navbar-brand" data-toggle="modal"><img src="image/apagado.png" width="50" height="50" class="d-inline-block align-top "border-radius=25px alt=""></a>
+                        <?php }if($hora >=16 & $hora <=23){?><a href="#ventana4" class="navbar-brand" data-toggle="modal"><img src="image/apagado.png" width="50" height="50" class="d-inline-block align-top "border-radius=25px alt=""></a>
+                        <?php } ?>
+
+                        
                     </div>
-                </div>
-                </div>
+            </div>
+            
+<!--Ventanas Emergentes-->     
 
-           
 
-
-       
      
         </nav>
+        <div class="modal fade" id="ventana1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">Ajustes <label class="lnr lnr-warning"></label></h5>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Desea Cambiar su conceña?</p>
+                <p>Nota: Ponga una contraceña facil de recordar, porque solo usted puede cambiarla.</p>  
+            </div>
+            <div class="modal-footer">
+                <a href="cambiarc-vista.php" type="button" class="btn btn-primary">Aceptar</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Retroceder</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+<div class="modal fade" id="ventana2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Notificación</h5>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p>Su break es a partir de las 12:00PM</p> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Retroceder</button>
+            </div>
+        </div>
+    </div>
+</div>
        
-       
+<div class="modal fade" id="ventana3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">Cerrar seción <label class="lnr lnr-warning"></label></h5>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Esperamos que disfrute su break.</p>
+                <p>Lo esperamos a las 3:00pm.</p>  
+            </div>
+            <div class="modal-footer">
+                <a href="break.php" type="button" class="btn btn-primary">Aceptar</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Retroceder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ventana4">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cerrar seción <label class="lnr lnr-warning"></label></h5>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p></p>
+                <p>¿Esta seguro que desea terminar su Jornada Laboral?</p>  
+            </div>
+            <div class="modal-footer">
+                <a href="contabilidadd-vista.php" type="button" class="btn btn-primary">Aceptar</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Retroceder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
   
  
