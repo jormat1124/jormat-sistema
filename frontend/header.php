@@ -48,33 +48,46 @@
             <ul class="list-unstyled CTAs">
                 <br><br><br>
 
+
+                <?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
                 <li class="active">
-                    <a href="#mventas" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Ventas</a>
+                    <a href="#muser" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-user-circle" aria-hidden="true"></i> User</a>
+                    <ul class="collapse list-unstyled" id="muser">
+                
+                        <li><a href="alogin-vista.php"><i class="fa fa-wrench" aria-hidden="true"></i> Login</a></li>
+                        <li><a  href="asocio-vista.php"><i class="fa fa-wrench" aria-hidden="true"></i> Socio</a></li>                      
+                        
+                    </ul>
+                </li>            
+
+                <?php break;}}?>
+
+                <li class="active">
+                    <a href="#mventas" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-shopping-cart " aria-hidden="true"></i> Ventas</a>
                     <ul class="collapse list-unstyled" id="mventas">
 
-                    
-                    <a  href="articulo-vista.php" >Articulos</a>
-                 
+                    <li>
+                    <a  href="articulo-vista.php" > <i class="fa fa-plus-circle" aria-hidden="true"></i> Articulos</a>
+                    </li>
                     
                     </ul>
                 
-                </li>
+</li>
 
                 <li class="active">
-                    <a href="#mnegocio" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Negocio</a>
+                    <a href="#mnegocio" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-building" aria-hidden="true"></i> Negocio</a>
                     <ul class="collapse list-unstyled" id="mnegocio">
 
-                        <li><a href="gastonegocio-vista.php" >Gasto Negocio</a></li>
+                        <li><a href="gastonegocio-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> New Gasto Negocio</a></li>
                         <?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
-                        <li class="nav-item- active"> <a  href="inversion-vista.php" >Realizar Inversión</a></li>
-                        <li class="nav-item- active"><a class=" nav-link"href="socio-vista.php">Recompensa</a></li>
+                        <li class="nav-item- active"> <a  href="inversion-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> Inversion General</a></li>
+                        <li class="nav-item- active"><a class=" nav-link"href="socio-vista.php"><i class="fa fa-university" aria-hidden="true"></i> Recompensa</a></li>
                         <?php break;}}?>
-                        <li><a href="consultainversion-vista.php" >Presupuesto Inversion</a></li>
                         
                     </ul>
                 </li>
                 <li class="active">
-                    <a href="#mhogares" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Hogares</a>
+                    <a href="#mhogares" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-home" aria-hidden="true"></i> Hogares</a>
                     <ul class="collapse list-unstyled" id="mhogares">
                         <li>
                             <a href="#">En proceso</a>
@@ -83,16 +96,22 @@
                     </ul>
                 </li>
                 <li class="active">
-                    <a href="#minformes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Informes</a>
+                    <a href="#minformes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-chart-bar"></i> Informes</a>
                     <ul class="collapse list-unstyled" id="minformes">
                         <li>
-                        <a  href="informe-venta.php" >Informe de Ventas</a>
+                        <a  href="informe-venta.php" ><i class="fa fa-shopping-cart " aria-hidden="true"></i> Informe de Ventas</a>
                         </li>
-                     
-                    </ul>
+                        <li>
+                        <a  href="consultagastonegocio-vista.php" ><i class="fa fa-building" aria-hidden="true"></i> Gastos Negocio</a>
+                        </li>
+                        <li><a href="consultainversion-vista.php" ><i class="fa fa-chart-bar"></i> Fondo para Inversion</a></li>
+                        <li><?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
+                        <a  href="consultapa-vista.php" ><i class="fa fa-object-group" aria-hidden="true"></i> Contabilidad General</a>
+                        <?php break;}}?>  </li>
+                        </ul>
                 </li>
-                <li class="nav-item- active"><a class=" nav-link"href="contactos-vista.php">Contactos</a></li>
-         <li class="nav-item- active"><a class=" nav-link"href="informacion-vista.php">Informacion</a></li>
+                <li class="nav-item- active"><a class=" nav-link"href="contactos-vista.php"><i class="fa fa-address-book" aria-hidden="true"></i> Contactos</a></li>
+         <li class="nav-item- active"><a class=" nav-link"href="informacion-vista.php"><i class="fa fa-user-circle" aria-hidden="true"></i> Informacion</a></li>
             </ul>
             
            
@@ -137,7 +156,7 @@
                         <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
                          
                         <a class="dropdown-item" href="reclamo-vista.php" >
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Propuesta
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> New Propuesta
                         </a>
                                      
                          <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
@@ -226,7 +245,7 @@
         </div>
     </div>
 </div>
-
+<br><br>
 
   
  
