@@ -54,9 +54,9 @@ $Rventa2 = mysqli_query($conn,$queryVenta);
 <div class="container">
 <div class="card card-body ">
 <form action="socio-vista.php" method="post">
-<h2>Contabilidad Quincenal  <?php if($dia == 15 || $dia >= 30){ ?> 
+ <h2><i class="fa fa-users" aria-hidden="true"></i> Contabilidad Quincenal  <?php if($dia == 15 || $dia >= 30){ ?> 
   <a class="btn btn-outline-danger" href="#Snomina" data-toggle="modal" >
-  Save Nomina
+  <i class="fa fa-database" aria-hidden="true"></i> Save Nomina
   </a><?php }?></h2>
 
 <table class="table table-striped">
@@ -76,7 +76,7 @@ $Rventa2 = mysqli_query($conn,$queryVenta);
 <td style="color:#018E6E;"><?php echo $usuarios[$contU]?> !Avance!</td>
 <?php $avance[$contU]=0; while( $row[$contU] = mysqli_fetch_array($resultado[$contU])){$avance[$contU]=$avance[$contU]+$row[$contU]['cantidad'];} ?>
 <td style="color:#018E6E;font-size:15px;">$<?php echo $avance[$contU]?></td> 
-<td><button class="btn btn-info"  name="buscar" value=<?php echo $contU ?> type="submit"><label class="lnr lnr-warning" ></label> Detalle  </button></td> 
+<td><button class="btn btn-info"  name="buscar" value=<?php echo $contU ?> type="submit"><label class="lnr lnr-warning" ></label><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Detalle  </button></td> 
 </tr>
 
 <?php 
@@ -109,7 +109,7 @@ if((isset($_POST['buscar'])) and ($_POST['buscar']==$contU)){?>
     <td style="color:#E30509;">Total gastos !Negocio!</td>
     <?php $totalgastoNegocio=0; while($rowgn = mysqli_fetch_array($RgastoNegocio)){$totalgastoNegocio=$totalgastoNegocio+$rowgn['cantidad'];} ?>
     <td style="color:#E30509;font-size:15px;">$<?php echo $totalgastoNegocio  ?></td>
-    <td><button class="btn btn-outline-danger"  name="buscar" value="gn" type="submit"><label class="lnr lnr-warning" ></label> Detalle  </button></td> 
+    <td><button class="btn btn-outline-danger"  name="buscar" value="gn" type="submit"><label class="lnr lnr-warning" ></label><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Detalle  </button></td> 
     </tr>
 
 
@@ -137,7 +137,7 @@ if((isset($_POST['buscar'])) and ($_POST['buscar']==$contU)){?>
     <td style="color:#0593E3;">Generado + !Avaces! - !Gastos!</td>
     <?php $totalGeneradoNegocio=0; while($row5 = mysqli_fetch_array($RIngresos)){$totalGeneradoNegocio=$totalGeneradoNegocio+$row5['cantidad'];} ?>
     <td style="color:#0593E3;font-size:15px;">$<?php echo $totalGeneradoNegocio+$totalavanceusuarios-$totalgastoNegocio;?></td>
-    <td><button class="btn btn-outline-primary"  name="buscar" value="INN" type="submit"><label class="lnr lnr-warning" ></label> Detalle  </button></td> 
+    <td><button class="btn btn-outline-primary"  name="buscar" value="INN" type="submit"><label class="lnr lnr-warning" ></label><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Detalle  </button></td> 
     </tr>
 
   <?php if((isset($_POST['buscar'])) and ($_POST['buscar']=='INN')){?>
@@ -166,7 +166,7 @@ if((isset($_POST['buscar'])) and ($_POST['buscar']==$contU)){?>
     <td style="color:#CA13DF;">Ganancia Ventas</td>
     <?php $totalVentas=0; while($row6 = mysqli_fetch_array($Rventa)){$totalVentas=$totalVentas+$row6['total_ganancia'];} ?>
     <td style="color:#CA13DF;font-size:15px;">$<?php $totalVentas = $totalVentas*0.50;echo $totalVentas;  ?></td>
-    <td><button class="btn btn-outline-primary"  name="buscar" value="TTV" type="submit"><label class="lnr lnr-warning" ></label> Detalle  </button></td> 
+    <td><button class="btn btn-outline-primary"  name="buscar" value="TTV" type="submit"><label class="lnr lnr-warning" ></label><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Detalle  </button></td> 
     </tr>
 
   <?php if((isset($_POST['buscar'])) and ($_POST['buscar']=='TTV')){?>
@@ -218,17 +218,27 @@ $totaltotal = $totalavanceusuarios+$totalGeneradoNegocio+$totalVentas-$totalgast
       </tr>
     </thead>
    <!--Total de la nomina de los usuarios estandar-->
-    <?php $contnomina=1; while($contnomina < $contusuarios){ ?>
+
+
+   <?php 
+
+//Total de las nominas de todos los usuarios
+$contnominap=0; while($contnominap < $contusuarios){ 
+$totalnominausuario[$contnominap] = $totaltotal*($porciento[$contnominap]/100);
+$totalnetodelusuario[$contnominap] = (($totaltotal*($porciento[$contnominap]/100))-$avance[$contnominap]); 
+$contnominap++;}
+//Mostrados de los totales de las nominas de los usuarios
+   $contnomina=1; while($contnomina < $contusuarios){ ?>
 
     <tr>
     <td><?php echo $usuarios[$contnomina]?></td>
     <?php //total de la nomina del usuario
-    $totalnominausuario = $totaltotal*($porciento[$contnomina]/100);
+    
     // Total neto de usuario
-    $totalnetodelusuario = $totaltotal*($porciento[$contnomina]/100))-$avance[$contnomina]; ?>
-    <td style="color:#4F0847;font-size:30px;">$<?php echo $totalnominausuario;?></td> 
+    ?>
+    <td style="color:#4F0847;font-size:30px;">$<?php echo $totalnominausuario[$contnomina];?></td> 
     <td style="color:#E30529;font-size:30px;">$<?php echo  $avance[$contnomina];?></td>
-    <td style="color:#0593E3;font-size:30px;">$<?php echo $totalnetodelusuario;?></td> 
+    <td style="color:#0593E3;font-size:30px;">$<?php echo $totalnetodelusuario[$contnomina];?></td> 
     </tr>
     <?php $contnomina++;}?>
 
@@ -250,16 +260,27 @@ $totaltotal = $totalavanceusuarios+$totalGeneradoNegocio+$totalVentas-$totalgast
 
 <!--Query para añadir las nominas-->
 
-<?php 
+<?php
+//consulta para saber si se ha guardado antes la nomina 
+$queryconsultanomina = "SELECT * FROM nomina where (fecha BETWEEN '$fecha1' and '$fecha2') ORDER BY id_nomina asc ";
+$Rconnomina = mysqli_query($conn,$queryconsultanomina);
+if(!$Rconnomina){echo "hey compa funciona";
 
-$conttotalnomina=1; while($conttotalnomina < $contusuarios){ 
+  $conttotalnomina=0; while($conttotalnomina < $contusuarios){ 
+    $query111 = "INSERT INTO nomina(socio_nombre,porciento_socio,total_nomina,total_descuento,total_neto) values ('$usuarios[$conttotalnomina]','$porciento[$conttotalnomina]','$totalnominausuario[$conttotalnomina]','$avance[$conttotalnomina]','$totalnetodelusuario[$conttotalnomina]')";
+    $result = mysqli_query($conn,$query111);
+    $conttotalnomina++;} 
+  }
+else{
+  while($rowctn =mysqli_fetch_array($Rconnomina)){$id_cnomina= $rowctn['id_nomina'];}
 
-$query111 = "INSERT INTO nomina(socio_nombre,porciento_socio,total_nomina,total_descuento,total_neto) values ('$usuarios[$conttotalnomina]','$porciento[$conttotalnomina]','$totalnominausuario','1111','1111')";
-$result = mysqli_query($conn,$query111);
+}
+
+//Insercion de todas las nominas
 
 
-$conttotalnomina++;}
-if(!$result){echo "mi local esto no esta funcionando";} ?>
+
+?>
 
 
             <!--Alerta de que esta guardada la nomina-->
@@ -273,10 +294,10 @@ if(!$result){echo "mi local esto no esta funcionando";} ?>
             </div>
           
             <div class="modal-footer">
-            <a href="cambiarc-vista.php" type="button" class="btn btn-primary">Aceptar</a>
+          
                 
             
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Retroceder</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
