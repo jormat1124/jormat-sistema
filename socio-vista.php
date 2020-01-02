@@ -48,13 +48,16 @@ $RIngresos2 = mysqli_query($conn,$queryIngreso);
 $queryVenta = "SELECT f.num_factura,f.factura,a.articulo,a.precio_venta,f.cantidad,f.rebaja,f.total_venta,f.total_ganancia,f.fecha_venta FROM articulos a inner join factura f on a.id_articulo = f.l_id_articulo where f.fecha_venta BETWEEN '$fecha1' and '$fecha2' ";
 $Rventa = mysqli_query($conn,$queryVenta);
 $Rventa2 = mysqli_query($conn,$queryVenta);
-
+//Html para el guardado de la nomina
 ?>
 <br>
 <div class="container">
 <div class="card card-body ">
 <form action="socio-vista.php" method="post">
-<h2>Contabilidad Quincenal  <?php if($dia == 15 || $dia >= 30){ ?> <button class="btn btn-outline-danger"  name="nomina" value="nomina" type="submit"><label class="lnr lnr-outline-warning" ></label> Save Nomina  </button><?php }?></h2>
+<h2>Contabilidad Quincenal  <?php if($dia == 15 || $dia >= 30){ ?> 
+  <a class="btn btn-outline-danger" href="#Snomina" data-toggle="modal" >
+  Save Nomina
+  </a><?php }?></h2>
 
 <table class="table table-striped">
 
@@ -214,14 +217,18 @@ $totaltotal = $totalavanceusuarios+$totalGeneradoNegocio+$totalVentas-$totalgast
         
       </tr>
     </thead>
-   
+   <!--Total de la nomina de los usuarios estandar-->
     <?php $contnomina=1; while($contnomina < $contusuarios){ ?>
 
     <tr>
     <td><?php echo $usuarios[$contnomina]?></td>
-    <td style="color:#4F0847;font-size:30px;">$<?php echo ($totaltotal*($porciento[$contnomina]/100))?></td> 
+    <?php //total de la nomina del usuario
+    $totalnominausuario = $totaltotal*($porciento[$contnomina]/100);
+    // Total neto de usuario
+    $totalnetodelusuario = $totaltotal*($porciento[$contnomina]/100))-$avance[$contnomina]; ?>
+    <td style="color:#4F0847;font-size:30px;">$<?php echo $totalnominausuario;?></td> 
     <td style="color:#E30529;font-size:30px;">$<?php echo  $avance[$contnomina];?></td>
-    <td style="color:#0593E3;font-size:30px;">$<?php echo ($totaltotal*($porciento[$contnomina]/100))-$avance[$contnomina];?></td> 
+    <td style="color:#0593E3;font-size:30px;">$<?php echo $totalnetodelusuario;?></td> 
     </tr>
     <?php $contnomina++;}?>
 
@@ -230,6 +237,50 @@ $totaltotal = $totalavanceusuarios+$totalGeneradoNegocio+$totalVentas-$totalgast
 </div>
 </div>
 
+<!--Ventana emergente para el guardado de la nomina-->
+<div class="modal fade" id="Snomina">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">Ajustes <label class="lnr lnr-warning"></label></h5>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+<!--Query para añadir las nominas-->
+
+<?php 
+
+$conttotalnomina=1; while($conttotalnomina < $contusuarios){ 
+
+$query111 = "INSERT INTO nomina(socio_nombre,porciento_socio,total_nomina,total_descuento,total_neto) values ('$usuarios[$conttotalnomina]','$porciento[$conttotalnomina]','$totalnominausuario','1111','1111')";
+$result = mysqli_query($conn,$query111);
+
+
+$conttotalnomina++;}
+if(!$result){echo "mi local esto no esta funcionando";} ?>
+
+
+            <!--Alerta de que esta guardada la nomina-->
+             
+            <div class="alert alert-success ?> alert-dismissible fade show" role="alert">
+            Nomina guardada Correctamente
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            </div>
+          
+            <div class="modal-footer">
+            <a href="cambiarc-vista.php" type="button" class="btn btn-primary">Aceptar</a>
+                
+            
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Retroceder</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
