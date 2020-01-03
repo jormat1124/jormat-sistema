@@ -58,7 +58,7 @@ $Rventa2 = mysqli_query($conn,$queryVenta);
 <form action="socio-vista.php" method="post">
  <h2><i class="fa fa-users" aria-hidden="true"></i> Contabilidad Quincenal  <?php if($dia == 15 || $dia >= 30){ ?> 
   <a class="btn btn-outline-danger" href="#Snomina" data-toggle="modal" >
-  <i class="fa fa-database" aria-hidden="true"></i> Save Nomina
+  <i class="fa fa-database" aria-hidden="true"></i> Save
   </a><?php }?></h2>
 
 <table class="table table-striped">
@@ -205,9 +205,9 @@ if((isset($_POST['buscar'])) and ($_POST['buscar']==$contU)){?>
 
 <?php 
 //para sacar el total general para paga a los usuarios
-$totaltotal = $totalavanceusuarios+$totalGeneradoNegocio+$totalVentas-$totalgastoNegocio?>  
-   
-
+$totaltotal = $totalavanceusuarios+$totalGeneradoNegocio+$totalVentas-$totalgastoNegocio;
+//Para sacar el total solo de lo que ha generado el negocio   
+$totalnegocio = $totalavanceusuarios+$totalGeneradoNegocio;?>  
    
  <table class="table table-striped">
     <thead>
@@ -276,10 +276,8 @@ if($id_cnomina=="0"){
     $result = mysqli_query($conn,$querytno);
     $conttotalnomina++;} 
 
-    $mensajen = "Gardada correctamente";
-    
-    
-  }
+    $mensajen = "Nomina";
+}
 else
 {
 
@@ -291,26 +289,43 @@ else
     $conttotalnomina2++;
     $id_cnomina++;} 
 
-    $mensajen = "Actualizada correctamente";
+    $mensajen = "Nominaa";
+}
+
+//Codigo para los inventarios
 
 
+
+$queryconsultainventario = "SELECT * FROM inventario where (fecha BETWEEN '$fecha1' and '$fecha2') ORDER BY id_inventario asc ";
+$Rinventario = mysqli_query($conn,$queryconsultainventario);
+$id_cinventario="0";
+
+while($rowciv =mysqli_fetch_array($Rinventario)){$id_cinventario= $rowciv['id_inventario'];}
+if($id_cinventario=="0"){
+//Para guardar el inventario si no esta guardada
+    $totalganancianegocio = $totalnegocio-$totalgastoNegocio;
+    $querytinv = "INSERT INTO inventario(tipo,total_generado,total_invertido_gasto,total_ganancia) values ('negocio','$totalnegocio','$totalgastoNegocio','$totalganancianegocio')";
+    $result = mysqli_query($conn,$querytinv);
+   
+}
+else
+{
+
+  //Para actualizar el inventario si no se encuentra guardada
+  $totalganancianegocio = $totalnegocio-$totalgastoNegocio;  
+  $querytinv2 = "UPDATE inventario SET total_generado='$totalnegocio',total_invertido_gasto='$totalgastoNegocio',total_ganancia='$totalganancianegocio',fecha='$fechayhoraactual' WHERE id_inventario = $id_cinventario;";
+    $result = mysqli_query($conn,$querytinv2);
 }?>
-
-
             <!--Alerta de que esta guardada la nomina-->
              
             <div class="alert alert-primary ?> alert-dismissible fade show" role="alert">
-            <?php echo $mensajen;?>
+            Guardado Correctamente
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
             </div>
             </div>
-          
             <div class="modal-footer">
-          
-                
-            
             <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
