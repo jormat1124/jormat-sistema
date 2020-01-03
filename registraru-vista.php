@@ -12,7 +12,12 @@ if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:
         <h1>Añadir Usuario</h1>
         <div class="form-group">
         <label for="exampleInputEmail1">Ingrese el usuario</label>
-        <input type="text" name="usuario" class="form-control" placeholder="usuario" autofocus>
+        <input type="text" name="usuario" class="form-control" placeholder="Usuario" autofocus>
+        </div>
+
+        <div class="form-group">
+        <label for="exampleInputEmail1">Porciento de ganancia</label>
+        <input type="text" name="porciento" class="form-control" placeholder="Ganancia usuario">
         </div>
 
         <div class="form-group">
@@ -25,6 +30,7 @@ if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:
         <input type="password" name="clave2" class="form-control" placeholder="Confirmar contraseña" autofocus>
         </div>
 
+      
 
             <input type="submit" class="btn btn-success btn-block" name="save" value="Registrar"  >
 

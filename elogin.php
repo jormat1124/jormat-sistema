@@ -9,6 +9,7 @@ if(isset($_GET['nombre'])){
      $row = mysqli_fetch_array($result);
     $nombre = $row['usuario'];
      $clave = $row['clave'];
+     $porciento = $row['porciento'];
     }
 }
 
@@ -19,7 +20,7 @@ if(isset($_GET['nombre'])){
 <div class="card card-body -8">
     <form action="actualizaru.php?temp=<?php echo $nombre ?>" method="POST">
         
-    <h1>Actualizar datos del usuario</h1>
+    <h1><i class="fa fa-users" aria-hidden="true"></i> Actualizar datos del usuario</h1>
 
         <div class="form-group">
         <label for="exampleInputEmail1">Usuario</label>
@@ -29,6 +30,21 @@ if(isset($_GET['nombre'])){
         <div class="form-group">
         <label for="exampleInputEmail1">Contraceña</label>
         <input type="text" name="clave" class="form-control"  value="<?php echo "user"?>" placeholder="Actualizar Información">
+        </div>
+
+        <div class="form-group">
+        <label for="exampleInputEmail1">Estado</label>
+        <select class="form-control" name = "estado">
+        
+                    <option  value="activo" >Activo</option>
+                    <option value="inactivo" >Inactivo</option>
+                    
+        </select>
+        </div>
+
+        <div class="form-group">
+        <label for="exampleInputEmail1">Porciento de ganancia</label>
+        <input type="text" name="porciento" class="form-control"  value="<?php echo $porciento;?>" placeholder="Actualizar Información">
         </div>
        
         <input type="submit" class="btn btn-success btn-block" name="update" value="Actualizar"  >

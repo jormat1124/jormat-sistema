@@ -54,8 +54,8 @@
                     <a href="#muser" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-user-circle" aria-hidden="true"></i> User</a>
                     <ul class="collapse list-unstyled" id="muser">
                 
-                        <li><a href="alogin-vista.php"><i class="fa fa-wrench" aria-hidden="true"></i> Login</a></li>
-                        <li><a  href="asocio-vista.php"><i class="fa fa-wrench" aria-hidden="true"></i> Socio</a></li>                      
+                        <li><a href="alogin-vista.php"><i class="fa fa-user-circle" aria-hidden="true"></i> Login</a></li>
+                        <li><a  href="asocio-vista.php"><i class="fa fa-address-book" aria-hidden="true"></i> Socio</a></li>                      
                         
                     </ul>
                 </li>            

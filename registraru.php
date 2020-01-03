@@ -13,7 +13,9 @@ $error = '';
         $tipo = "2";
         $clave = $_POST['clave'];
         $clave2 = $_POST['clave2'];
-        
+    
+        $porciento = $_POST['porciento'];
+
         $clave = hash('sha512', $clave);
         $clave2 = hash('sha512', $clave2);
         
@@ -52,12 +54,13 @@ $error = '';
         }
         
         if ($error == ''){
-            $statement = $conexion->prepare('INSERT INTO login (id_login, usuario, tipo, clave) VALUES (null,:usuario, :tipo, :clave)');
+            $statement = $conexion->prepare('INSERT INTO login (id_login, usuario, tipo,porciento, clave) VALUES (null,:usuario, :tipo, :porciento, :clave)');
             $statement->execute(array(
                 
                 ':usuario' => $usuario,
                 ':tipo' => $tipo,
-                ':clave' => $clave
+                ':clave' => $clave,
+                ':porciento' =>$porciento
             ));
             $_SESSION['message'] = 'Usuario registrado exitosamente';
             $_SESSION['message_type'] = 'success';

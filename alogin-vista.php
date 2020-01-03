@@ -18,7 +18,7 @@ $resultado = mysqli_query($conn,$query);?>
     <div class="container">
 <div class="card card-body ">
 
-  <h2>Usuarios <a class="btn btn-danger"  href="registraru-vista.php"> Nuevo Usuario </a></h2>
+  <h2><i class="fa fa-users" aria-hidden="true"></i> Usuarios <a class="btn btn-danger"  href="registraru-vista.php"><i class="fa fa-user-plus" aria-hidden="true"></i> Nuevo Usuario </a></h2>
   <p>Nota: Solo editar los datos en caso de que sea necesario</p>            
   <table class="table table-striped">
     <thead >
@@ -26,7 +26,9 @@ $resultado = mysqli_query($conn,$query);?>
         
         <th>Usuario</th>
         <th>Tipo</th>
+        <th>Ganancia</th>
         <th>Clave</th>
+        <th>Estado</th>
         <th>Opción</th>
       </tr>
     </thead>
@@ -34,8 +36,10 @@ $resultado = mysqli_query($conn,$query);?>
       <tr>
         <td><?php echo $row['usuario']?></td>
         <td><?php if($row['tipo']== '1'){echo "Administrador";} else {echo "Estandar";}?></td>
+        <td><?php echo $row['porciento']?>%</td>
         <td><?php echo "No Disponible"; ?></td>
-        <td><a class="btn btn-warning" href="elogin.php?nombre=<?php echo $row['usuario']?>" <label class="lnr lnr-warning" ></label> Editar </a></td>
+        <td ><?php echo $row['estado']?></td>
+        <td><a class="btn btn-warning" href="elogin.php?nombre=<?php echo $row['usuario'];?>">  <i class="fa fa-cog" aria-hidden="true"></i></a></td>
 
       </tr>
       <?php } ?>
