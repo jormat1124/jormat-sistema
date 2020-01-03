@@ -13,11 +13,12 @@ include ("conexion.php");
         $clave = $_POST['clave'];
         $clave = hash('sha512', $clave);
         
-        $statement = $conexion->prepare('SELECT * FROM login WHERE usuario = :usuario AND clave = :clave');
+        $statement = $conexion->prepare("SELECT * FROM login WHERE (usuario = :usuario AND clave = :clave)AND estado='activo'");
         
         $statement->execute(array(
             ':usuario' => $usuario,
-            ':clave' => $clave
+            ':clave' => $clave,
+            
         ));
             
         $rows = $statement->fetch(PDO::FETCH_NUM);

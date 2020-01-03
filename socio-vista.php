@@ -10,6 +10,7 @@ if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:
  $ano = date("Y-",time());
  $hora = " 23:55:00";
  $hora1 = " 05:00:00";
+$fechayhoraactual = date("Y-m-d H:i:s",time());
 
 if($dia<=15){
     $dia1 = 1;
@@ -19,6 +20,7 @@ else
 
  $fecha1 = $ano.($mes).($dia1).$hora1;
  $fecha2 = $ano.($mes).$dia.$hora;
+
 //Consulta para saber los usuarios y más
 $query0 = "SELECT * FROM login Where estado='activo'";
 $resultado0 = mysqli_query($conn,$query0);
@@ -264,29 +266,41 @@ $contnominap++;}
 //consulta para saber si se ha guardado antes la nomina 
 $queryconsultanomina = "SELECT * FROM nomina where (fecha BETWEEN '$fecha1' and '$fecha2') ORDER BY id_nomina asc ";
 $Rconnomina = mysqli_query($conn,$queryconsultanomina);
-if(!$Rconnomina){echo "hey compa funciona";
+$id_cnomina="0";
 
+while($rowctn =mysqli_fetch_array($Rconnomina)){$id_cnomina= $rowctn['id_nomina'];}
+if($id_cnomina=="0"){
+//Para guardar la nomina si no esta guardada
   $conttotalnomina=0; while($conttotalnomina < $contusuarios){ 
-    $query111 = "INSERT INTO nomina(socio_nombre,porciento_socio,total_nomina,total_descuento,total_neto) values ('$usuarios[$conttotalnomina]','$porciento[$conttotalnomina]','$totalnominausuario[$conttotalnomina]','$avance[$conttotalnomina]','$totalnetodelusuario[$conttotalnomina]')";
-    $result = mysqli_query($conn,$query111);
+    $querytno = "INSERT INTO nomina(socio_nombre,porciento_socio,total_nomina,total_descuento,total_neto) values ('$usuarios[$conttotalnomina]','$porciento[$conttotalnomina]','$totalnominausuario[$conttotalnomina]','$avance[$conttotalnomina]','$totalnetodelusuario[$conttotalnomina]')";
+    $result = mysqli_query($conn,$querytno);
     $conttotalnomina++;} 
+
+    $mensajen = "Gardada correctamente";
+    
+    
   }
-else{
-  while($rowctn =mysqli_fetch_array($Rconnomina)){$id_cnomina= $rowctn['id_nomina'];}
+else
+{
 
-}
+  //Para actualizar la nomina si no se encuentra guardada
+  $id_cnomina = $id_cnomina - 2;
+  $conttotalnomina2=0; while($conttotalnomina2 < $contusuarios){ 
+    $querytno2 = "UPDATE nomina SET porciento_socio='$porciento[$conttotalnomina2]',total_nomina='$totalnominausuario[$conttotalnomina2]',total_descuento='$avance[$conttotalnomina2]',total_neto='$totalnetodelusuario[$conttotalnomina2]',fecha='$fechayhoraactual' WHERE id_nomina = $id_cnomina;";
+    $result = mysqli_query($conn,$querytno2);
+    $conttotalnomina2++;
+    $id_cnomina++;} 
 
-//Insercion de todas las nominas
+    $mensajen = "Actualizada correctamente";
 
 
-
-?>
+}?>
 
 
             <!--Alerta de que esta guardada la nomina-->
              
-            <div class="alert alert-success ?> alert-dismissible fade show" role="alert">
-            Nomina guardada Correctamente
+            <div class="alert alert-primary ?> alert-dismissible fade show" role="alert">
+            <?php echo $mensajen;?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
