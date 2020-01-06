@@ -58,7 +58,7 @@ $Rventa2 = mysqli_query($conn,$queryVenta);
 <form action="socio-vista.php" method="post">
  <h2><i class="fa fa-users" aria-hidden="true"></i> Contabilidad Quincenal  <?php if($dia == 15 || $dia >= 30){ ?> 
   <a class="btn btn-outline-danger" href="#Snomina" data-toggle="modal" >
-  <i class="fa fa-database" aria-hidden="true"></i> Save
+  <i class="fa fa-database" aria-hidden="true"></i> Save Data
   </a><?php }?></h2>
 
 <table class="table table-striped">
@@ -254,7 +254,7 @@ $contnominap++;}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title">Ajustes <label class="lnr lnr-warning"></label></h5>
+            <h5 class="modal-title">Alerta <label class="lnr lnr-warning"></label></h5>
                 </button>
             </div>
             <div class="modal-body">
@@ -293,8 +293,6 @@ else
 }
 
 //Codigo para los inventarios
-
-
 
 $queryconsultainventario = "SELECT * FROM inventario where (fecha BETWEEN '$fecha1' and '$fecha2') ORDER BY id_inventario asc ";
 $Rinventario = mysqli_query($conn,$queryconsultainventario);

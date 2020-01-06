@@ -51,11 +51,12 @@ if(isset($_POST['save'])){
             if(!$result){
                 $_SESSION['message'] = 'Por favor verifique los datos ingresados';
                 $_SESSION['message_type'] = 'danger';
+                header("location: aefectivo-vista.php");
                ;}
             
            }
 
-           header("location: aefectivo-vista.php");
+           header("location: consultaavance-vista.php");
 
 
 }?>

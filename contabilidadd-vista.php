@@ -15,9 +15,7 @@ $nombre = $_SESSION['nombre'];
  $hora1 = " 05:00:00";
  $fecha1 = $ano.($mes).($dia).$hora1;
  $fecha2 = $ano.($mes).$dia.$hora;
-
-
- 
+//Sql para mostrar los ingresos
 $query1 = "SELECT * FROM ingreso where (socio = '$nombre' and tipo_ingreso = 'hogar') and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
 $resultado1 = mysqli_query($conn,$query1);
 
@@ -33,7 +31,7 @@ $resultado4 = mysqli_query($conn,$query4);
 ?>
 <div class="container">
 <br>
-
+<!--Consultas para ver los ingresos-->
 <div class="card card-body ">
 <div class="container">
 <h2>Contabilidad</h2>           
@@ -43,7 +41,7 @@ $resultado4 = mysqli_query($conn,$query4);
         <th>Tipo</th>
         <th>Cantidad</th>
         
-      </tr>
+    </tr>
     </thead>
     <tr>
     <td>Hogares</td>
@@ -75,20 +73,6 @@ $resultado4 = mysqli_query($conn,$query4);
  
 <div class= col-md-8> 
 
-    <?php if(isset($_SESSION['message'])) { 
-        if(($_SESSION['message']) != ($_SESSION['message_type'])){
-        if($_SESSION['message_type']=='success'){?><a href="index.php" class="btn btn-danger btn-lg btn-block">Cerrar Software </a><?php }?>
-          
-        <br>
-        <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
-        <?= $_SESSION['message'] ?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        
-    <?php }} ?>
-
     <?php if(isset($_SESSION['message2'])) { 
         if(($_SESSION['message2']) != ($_SESSION['message_type2'])){?>
         
@@ -101,6 +85,7 @@ $resultado4 = mysqli_query($conn,$query4);
         
     <?php }} $_SESSION['message_type2']=''; $_SESSION['message2']=''; ?>
 
+<!--Formulario-->
 <div class="card card-body -8">
 
         <form action="contabilidadd.php" method="post">
@@ -110,18 +95,41 @@ $resultado4 = mysqli_query($conn,$query4);
         <br><h3>Negocio</h3>
 
         <div class="form-group">
-        <input type="text" name="cantidadn" class="form-control" placeholder="Cantidad" autofocus>
+        <input type="number" name="cantidadn" class="form-control" placeholder="Cantidad" autofocus>
         </div>
 
         <br><h3>Recargas</h3>
 
         <div class="form-group">
-        <input type="text" name="cantidadr" class="form-control" placeholder="Cantidad" autofocus>
+        <input type="number" name="cantidadr" class="form-control" placeholder="Cantidad" autofocus>
         </div>
 
-            <i style="color:#CB2629">Nota: Tener pendiente los datos ingresados, debido a que no se pueden editar.</i>  
-            <br><br><a href="#ven" class="btn btn-success btn-block" data-toggle="modal">Guardar</a>
-            
+        <i style="color:#CB2629">Nota: Tener pendiente los datos ingresados, debido a que no se pueden editar y despues de guardados no se puede volver a guardar.</i>  
+        
+<!--Sql para validar si ya se ha guardado la contabilidad-->
+<?php 
+
+$queryconsultacontabilidadd = "SELECT * FROM ingreso where (((fecha_ingreso BETWEEN '$fecha1' and '$fecha2') and detalle = 'Ingresos diarios')and tipo_ingreso = 'negocio') ORDER BY id_ingreso asc ";
+$Rcontabilidad = mysqli_query($conn,$queryconsultacontabilidadd);
+$id_contabilidadd="0";
+
+while($rowciv =mysqli_fetch_array($Rcontabilidad)){$id_contabilidadd= $rowciv['id_ingreso'];}
+if($id_contabilidadd=="0"){
+?>
+    <br><br><a href="#ven" class="btn btn-success btn-block" data-toggle="modal">Guardar</a>
+<?php }
+else {
+    echo "Nota: Los ingresos ya se encuentran registrados, por lo que no puede volver a guardarlos";
+   
+}
+
+
+?>
+
+
+       
+
+ <!--Ventana emergente-->           
 <div class="modal fade" id="ven">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -142,30 +150,11 @@ $resultado4 = mysqli_query($conn,$query4);
         </div>
     </div>
 </div>  
-    </form>
-    </div>
-</div>
-</div>
-</div>
+
+</form>
 </div>
 
-<?php 
 
-
-if(isset($_SESSION['message'])) { 
-    if(($_SESSION['message']) != ($_SESSION['message_type'])){
-    if($_SESSION['message_type']=='success'){   session_destroy();
-        $_SESSION = array();
-     
-
-
-
-    }} $_SESSION['message_type']=''; $_SESSION['message']='';}
-
-
-
-
+<?php include ("frontend/footer.php");
 }
-include ("frontend/footer.php");
-
 ?>

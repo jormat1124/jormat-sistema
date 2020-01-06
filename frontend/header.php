@@ -81,7 +81,7 @@
                         <li><a href="gastonegocio-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> New Gasto Negocio</a></li>
                         <?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
                         <li class="nav-item- active"> <a  href="inversion-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> Inversion General</a></li>
-                        <li class="nav-item- active"><a class=" nav-link"href="socio-vista.php"><i class="fa fa-university" aria-hidden="true"></i> Nomina</a></li>
+                        <li class="nav-item- active"><a class=" nav-link"href="socio-vista.php"><i class="fa fa-university" aria-hidden="true"></i> Recompensa </a></li>
                         <?php break;}}?>
                         
                     </ul>
@@ -171,13 +171,21 @@
                          <i class="fa fa-lock-open"></i> Cambiar Contraceña
                         </a>
 
-
                         <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
                         <!--Para actualizar la hora actual--> 
                         <?php ini_set('date.timezone','America/Santo_Domingo'); $hora = date("H",time()); ?>
                         <!--Opciones de break y salir con horario estatico--> 
-                        <?php if($hora >=12 & $hora <=15){ ?><a href="#ventana3" class="dropdown-item" data-toggle="modal"><i class="fas fa-coffee"></i> Receso</a>
-                        <?php }if($hora >=16 & $hora <=23){?><a href="#ventana4" class="dropdown-item" data-toggle="modal"><i class="fas fa-times "></i> Close</a>
+                        
+                    
+                        <?php  if($hora >=12 & $hora <=15){ ?><a href="#ventana3" class="dropdown-item" data-toggle="modal"><i class="fas fa-coffee"></i> Receso</a>
+                        <?php }if($hora >=16 & $hora <=23){?>
+                        
+                        <a class="dropdown-item" href="contabilidadd-vista.php">
+                        <i class="fa  fa-university"></i> Cuadre Diario
+                        </a>
+                        <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                        
+                        <a href="#ventana4" class="dropdown-item" data-toggle="modal"><i class="fas fa-times "></i> Close</a>
                         <?php } ?>
 
                         
@@ -236,10 +244,11 @@
             </div>
             <div class="modal-body">
                 <p></p>
-                <p>¿Esta seguro que desea terminar su Jornada Laboral?</p>  
+                <p>¿Esta seguro que desea terminar su Jornada Laboral?</p> 
+                <p>En caso de que sea positivo pase feliz resto del día</p>
             </div>
             <div class="modal-footer">
-                <a href="contabilidadd-vista.php" type="button" class="btn btn-primary">Aceptar</a>
+                <a href="close.php" type="button" class="btn btn-primary">Aceptar</a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Retroceder</button>
             </div>
         </div>

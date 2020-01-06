@@ -54,7 +54,7 @@ if(isset($_POST['save'])){
             
            }
 
-           header("location: gastonegocio-vista.php");
+           header("location: consultagastonegocio-vista.php");
 
 
 }?>

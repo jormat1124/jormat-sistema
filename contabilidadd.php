@@ -16,8 +16,6 @@ $dia = date("d",time());
 
  $horal = date("H",time());
 
-
-
  if($horal >16 & $horal <24){
 
  if($dia<=15){$dia1 = 1;}else{$dia1 = 16;}
@@ -26,17 +24,18 @@ $dia = date("d",time());
  $fecha2 = $ano.($mes).$dia.$hora;
 
 
-
+//En proceso de movedera 
 if(($dia == 13) or ($dia == 27)){
 
     $query5 = "SELECT * FROM ingreso where tipo_ingreso = 'negocio' and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
     $resultado5 = mysqli_query($conn,$query5);
     $total5=0; while($row5 = mysqli_fetch_array($resultado5)){$total5=$total5+$row5['cantidad'];}
-    $total5 = (($total5*0.20)-1000);
+    $total5 = (($total5*0.20) );
     $_SESSION['message2'] = 'Su aproximado para esta quinsena es de: $'.$total5.' Pesos' ;
     $_SESSION['message_type2'] = 'primary'; 
 }
 
+//Para guardar los datos de la contabilidad diaria
 if((isset($_POST['save'])) and (isset($_SESSION['rol']))){
     $tipo_ingresoN= "negocio";
     $cantidadN = $_POST['cantidadn'];
@@ -48,12 +47,14 @@ if((isset($_POST['save'])) and (isset($_SESSION['rol']))){
     if($cantidadN <= '-1'){
         $_SESSION['message'] = 'Por favor ingresar valores positivos, vuelva a introducir todos los datos nuevamente';
         $_SESSION['message_type'] = 'danger';
-        $error = '1222';}
+        $error = '1222';
+        header('location: contabilidadd-vista.php');}
 
     if($cantidadR <= '-1'){
         $_SESSION['message'] = 'Por favor ingresar valores positivos, vuelva a introducir todos los datos nuevamente';
         $_SESSION['message_type'] = 'danger';
-        $error = '1222';}
+        $error = '1222';
+        header('location: contabilidadd-vista.php');}
 
    if ($error == ''){
     $query = "INSERT INTO ingreso(socio,tipo_ingreso,cantidad,detalle) values ('$socio','$tipo_ingresoN','$cantidadN','$detalleN')";
@@ -65,60 +66,39 @@ if((isset($_POST['save'])) and (isset($_SESSION['rol']))){
     
 
     if(!$result){
-        $_SESSION['message'] = 'Datos de negocio no guardados, por introducir valores no numericos, por favor vuelva a Introduscalos nuevamente';
+        $_SESSION['message2'] = 'Datos de negocio no guardados, por introducir valores no numericos, por favor vuelva a Introduscalos nuevamente';
         $_SESSION['message_type'] = 'danger';
        ;}
 
-       if(!$result2){
-        $_SESSION['message'] = 'Datos de las recargas no guardados, por favor vuelva a introducirlos nuevamente';
-        $_SESSION['message_type'] = 'danger';
-       ;}
+       header('location: contabilidadd-vista.php');
    }
+
+   //Para guardar los gastos mensuales del negocio
+
+   if(($hora3 >= 20) and ($dia == 2)){
+
+    $query = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','2500','Local & Internet')";
+    mysqli_query($conn,$query);
+    $query2 = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','500','Ahorro para Inversion')";
+    mysqli_query($conn,$query2);
+    $query3 = "INSERT INTO ingreso(socio,tipo_ingreso,cantidad,detalle) values ('$socio','inversion','500','ingresos para invertir')";
+    mysqli_query($conn,$query3);
+
+}
+if(($hora3 >= 20) and ($dia == 17)){
+
+    $query = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','2500','Local & Internet')";
+    mysqli_query($conn,$query);
+    $query2 = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','500','Ahorro para Inversion')";
+    mysqli_query($conn,$query2);
+    $query3 = "INSERT INTO ingreso(socio,tipo_ingreso,cantidad,detalle) values ('$socio','inversion','500','ingresos para invertir')";
+    mysqli_query($conn,$query3);
+}
+
+
+
+
 //ESta es la parte de cerrar sección en la cual guarda la hora de salida del software
-        if ($_SESSION['message_type'] == 'success'){
-            
-               
-        $query = "SELECT * FROM ponche order by id_ponche desc limit 0,1";
-        $resultado1 = mysqli_query($conn,$query);
-        while($row = mysqli_fetch_array($resultado1)){$fuego = $row['id_ponche'];}
-
-        ini_set('date.timezone','America/Santo_Domingo');
-        $datof = date("Y-m-d H:i:s",time());
-        $quer = "UPDATE ponche SET salida = '$datof' WHERE id_ponche = '$fuego'";
-        $result = mysqli_query($conn,$quer);
-
-        if(($hora3 >= 20) and ($dia == 15)){
-
-            $query = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','2000','Local & Internet')";
-            mysqli_query($conn,$query);
-            $query2 = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','500','Ahorro para Inversion')";
-            mysqli_query($conn,$query2);
-            $query3 = "INSERT INTO ingreso(socio,tipo_ingreso,cantidad,detalle) values ('$socio','inversion','500','ingresos para invertir')";
-            mysqli_query($conn,$query3);
-            $_SESSION['message2'] = 'Hoy es el día especial.';
-            $_SESSION['message_type2'] = 'primary';
-        
-        }
-        if(($hora3 >= 20) and ($dia == 30)){
-        
-            $query = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','1500','Local & Internet')";
-            mysqli_query($conn,$query);
-            $query2 = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','500','Ahorro para Inversion')";
-            mysqli_query($conn,$query2);
-            $query3 = "INSERT INTO ingreso(socio,tipo_ingreso,cantidad,detalle) values ('$socio','inversion','1000','ingresos para invertir')";
-            mysqli_query($conn,$query3);
-        
-            $_SESSION['message2'] = 'Hoy es el día especial. ';
-            $_SESSION['message_type2'] = 'primary';
-        
-        }
-
-
-        }
-        header("location: contabilidadd-vista.php");
-}
-
-}
-else
-{header('location: login.php');}
+ }}
+header('location: contabilidadd-vista.php');
 ?>
