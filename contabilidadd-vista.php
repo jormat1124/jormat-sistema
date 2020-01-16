@@ -73,6 +73,9 @@ $resultado4 = mysqli_query($conn,$query4);
  
 <div class= col-md-8> 
 
+<!--Mensaje de que los datos están guardados-->
+
+
     <?php if(isset($_SESSION['message2'])) { 
         if(($_SESSION['message2']) != ($_SESSION['message_type2'])){?>
         
@@ -105,31 +108,9 @@ $resultado4 = mysqli_query($conn,$query4);
         </div>
 
         <i style="color:#CB2629">Nota: Tener pendiente los datos ingresados, debido a que no se pueden editar y despues de guardados no se puede volver a guardar.</i>  
-        
-<!--Sql para validar si ya se ha guardado la contabilidad-->
-<?php 
-
-$queryconsultacontabilidadd = "SELECT * FROM ingreso where (((fecha_ingreso BETWEEN '$fecha1' and '$fecha2') and detalle = 'Ingresos diarios')and tipo_ingreso = 'negocio') ORDER BY id_ingreso asc ";
-$Rcontabilidad = mysqli_query($conn,$queryconsultacontabilidadd);
-$id_contabilidadd="0";
-
-while($rowciv =mysqli_fetch_array($Rcontabilidad)){$id_contabilidadd= $rowciv['id_ingreso'];}
-if($id_contabilidadd=="0"){
-?>
-    <br><br><a href="#ven" class="btn btn-success btn-block" data-toggle="modal">Guardar</a>
-<?php }
-else {
-    echo "Nota: Los ingresos ya se encuentran registrados, por lo que no puede volver a guardarlos";
-   
-}
-
-
-?>
-
-
        
 
- <!--Ventana emergente-->           
+<!--Ventana emergente-->           
 <div class="modal fade" id="ven">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -151,8 +132,37 @@ else {
     </div>
 </div>  
 
-</form>
-</div>
+
+
+
+        </div>
+        </form>
+<!--Sql para validar si ya se ha guardado la contabilidad-->
+<?php 
+
+$queryconsultacontabilidadd = "SELECT * FROM ingreso where (((fecha_ingreso BETWEEN '$fecha1' and '$fecha2') and detalle = 'Ingresos diarios')and tipo_ingreso = 'negocio') ORDER BY id_ingreso asc ";
+$Rcontabilidad = mysqli_query($conn,$queryconsultacontabilidadd);
+$id_contabilidadd="0";
+
+while($rowciv =mysqli_fetch_array($Rcontabilidad)){$id_contabilidadd= $rowciv['id_ingreso'];}
+if($id_contabilidadd=="0"){
+?>
+    <br><br><a href="#ven" class="btn btn-success btn-block" data-toggle="modal">Guardar</a>
+<?php }
+else {
+    echo "Nota: Los ingresos ya se encuentran registrados, por lo que no puede volver a guardarlos, en caso de aver un ingreso extra por favor ponerlo como ingresos X, y especificar en el detalle.";
+   
+}
+
+
+?>
+
+
+       
+
+ 
+
+
 
 
 <?php include ("frontend/footer.php");

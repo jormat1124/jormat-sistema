@@ -5,7 +5,7 @@ if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:
 //Manejo de fechas para los diferentes usuarios
 
  ini_set('date.timezone','America/Santo_Domingo');
- $dia = 15;
+ $dia = date("d",time());
  $mes = date("m-",time());
  $ano = date("Y-",time());
  $hora = " 23:55:00";

@@ -13,7 +13,6 @@ $dia = date("d",time());
  $hora = date(" H:i:s",time());
  $hora1 = " 05:00:00";
  $hora3 = date("H",time());     
-
  $horal = date("H",time());
 
  if($horal >16 & $horal <24){
@@ -39,10 +38,10 @@ if(($dia == 13) or ($dia == 27)){
 if((isset($_POST['save'])) and (isset($_SESSION['rol']))){
     $tipo_ingresoN= "negocio";
     $cantidadN = $_POST['cantidadn'];
-    $detalleN = "Ingresos diarios";
+    $detalleN = "Ingresos diarios negocio";
     $tipo_ingresoR= "recarga";
     $cantidadR = $_POST['cantidadr'];
-    $detalleR = "Ingresos diarios";
+    $detalleR = "Ingresos diarios recargas";
        
     if($cantidadN <= '-1'){
         $_SESSION['message'] = 'Por favor ingresar valores positivos, vuelva a introducir todos los datos nuevamente';
