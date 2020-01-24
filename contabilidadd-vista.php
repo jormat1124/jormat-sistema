@@ -3,7 +3,6 @@
  if(!isset($_SESSION['rol'])) {header('location: login.php');}
  ini_set('date.timezone','America/Santo_Domingo');
 $horal = date("H",time());
-
 if($horal >16 & $horal <24){
 
 $nombre = $_SESSION['nombre'];
@@ -73,20 +72,7 @@ $resultado4 = mysqli_query($conn,$query4);
  
 <div class= col-md-8> 
 
-<!--Mensaje de que los datos están guardados-->
 
-
-    <?php if(isset($_SESSION['message2'])) { 
-        if(($_SESSION['message2']) != ($_SESSION['message_type2'])){?>
-        
-        <div class="alert alert-<?= $_SESSION['message_type2'] ?> alert-dismissible fade show" role="alert">
-        <?= $_SESSION['message2'] ?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        
-    <?php }} $_SESSION['message_type2']=''; $_SESSION['message2']=''; ?>
 
 <!--Formulario-->
 <div class="card card-body -8">
@@ -158,12 +144,7 @@ else {
 ?>
 
 
-       
-
- 
-
-
-
+    
 
 <?php include ("frontend/footer.php");
 }

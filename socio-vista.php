@@ -56,10 +56,10 @@ $Rventa2 = mysqli_query($conn,$queryVenta);
 <div class="container">
 <div class="card card-body ">
 <form action="socio-vista.php" method="post">
- <h2><i class="fa fa-users" aria-hidden="true"></i> Contabilidad Quincenal  <?php if($dia == 15 || $dia >= 30){ ?> 
-  <a class="btn btn-outline-danger" href="#Snomina" data-toggle="modal" >
+ <h2><i class="fa fa-users" aria-hidden="true"></i> Contabilidad Quincenal  <?php $dia = 15; if($dia == 15 || $dia >= 30){ ?> 
+  <button class="btn btn-outline-danger" name="nominag" type="submit">
   <i class="fa fa-database" aria-hidden="true"></i> Save Data
-  </a><?php }?></h2>
+  </button><?php }?></h2>
 
 <table class="table table-striped">
 
@@ -249,20 +249,13 @@ $contnominap++;}
 </div>
 </div>
 
-<!--Ventana emergente para el guardado de la nomina-->
-<div class="modal fade" id="Snomina">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">Alerta <label class="lnr lnr-warning"></label></h5>
-                </button>
-            </div>
-            <div class="modal-body">
+
 
 
 <!--Query para añadir las nominas-->
 
-<?php
+<?php if((isset($_POST['nominag']))){
+ 
 //consulta para saber si se ha guardado antes la nomina 
 $queryconsultanomina = "SELECT * FROM nomina where (fecha BETWEEN '$fecha1' and '$fecha2') ORDER BY id_nomina asc ";
 $Rconnomina = mysqli_query($conn,$queryconsultanomina);
@@ -275,12 +268,11 @@ if($id_cnomina=="0"){
     $querytno = "INSERT INTO nomina(socio_nombre,porciento_socio,total_nomina,total_descuento,total_neto) values ('$usuarios[$conttotalnomina]','$porciento[$conttotalnomina]','$totalnominausuario[$conttotalnomina]','$avance[$conttotalnomina]','$totalnetodelusuario[$conttotalnomina]')";
     $result = mysqli_query($conn,$querytno);
     $conttotalnomina++;} 
-
-    $mensajen = "Nomina";
+    echo "Nomina Guardada ";
 }
 else
 {
-
+echo $id_cnomina;
   //Para actualizar la nomina si no se encuentra guardada
   $id_cnomina = $id_cnomina - 2;
   $conttotalnomina2=0; while($conttotalnomina2 < $contusuarios){ 
@@ -288,8 +280,8 @@ else
     $result = mysqli_query($conn,$querytno2);
     $conttotalnomina2++;
     $id_cnomina++;} 
-
-    $mensajen = "Nominaa";
+    echo "Nomina Actualizada ";
+    
 }
 
 //Codigo para los inventarios
@@ -304,7 +296,7 @@ if($id_cinventario=="0"){
     $totalganancianegocio = $totalnegocio-$totalgastoNegocio;
     $querytinv = "INSERT INTO inventario(tipo,total_generado,total_invertido_gasto,total_ganancia) values ('negocio','$totalnegocio','$totalgastoNegocio','$totalganancianegocio')";
     $result = mysqli_query($conn,$querytinv);
-   
+    echo "Inventario Guardado";
 }
 else
 {
@@ -313,26 +305,11 @@ else
   $totalganancianegocio = $totalnegocio-$totalgastoNegocio;  
   $querytinv2 = "UPDATE inventario SET total_generado='$totalnegocio',total_invertido_gasto='$totalgastoNegocio',total_ganancia='$totalganancianegocio',fecha='$fechayhoraactual' WHERE id_inventario = $id_cinventario;";
     $result = mysqli_query($conn,$querytinv2);
+    echo "Inventario Actualizado";
+}         
 }?>
-            <!--Alerta de que esta guardada la nomina-->
-             
-            <div class="alert alert-primary ?> alert-dismissible fade show" role="alert">
-            Guardado Correctamente
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
-
-<br><br>
 
 <br><br>
 

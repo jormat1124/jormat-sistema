@@ -21,7 +21,7 @@
         <h1>Gastos Negocio</h1>
 
         <br><h3>Cantidad*</h3>
-
+<!--
         <div class="form-group form-check-inline">
         <input type="radio" class="form-check-input" value="25"name="cantidadc">
         <label class="form-check-label" for="materialInline1">25 Pesos</label>
@@ -46,13 +46,13 @@
         <input type="radio" class="form-check-input" value="200" name="cantidadc">
         <label class="form-check-label" for="materialInline3">200 Pesos</label>
         </div>
-
+-->
         <div class="form-group">
-        <input type="text" name="cantidad" class="form-control" placeholder="Otra cantidad" autofocus>
+        <input type="text" name="cantidad" class="form-control" placeholder="Cantidad" autofocus>
         </div>
 
         <br><h3>Detalle*</h3>
-        
+<!--        
         <div class="form-group form-check-inline">
         <input type="radio" class="form-check-input" value="Galleticas"name="detallec">
         <label class="form-check-label" for="materialInline1">Galleticas</label>
@@ -77,9 +77,9 @@
         <input type="radio" class="form-check-input" value="Mistolin"name="detallec">
         <label class="form-check-label" for="materialInline1">Utencilios</label>
         </div>
-
+-->
         <div class="form-group">
-        <input type="text" name="detalle" class="form-control" placeholder="Otro detalle" autofocus>
+        <input type="text" name="detalle" class="form-control" placeholder="Detalle" autofocus>
         </div>
             
             <i>Nota: "Por favor verifique la cantidad y el detalle".</i>  

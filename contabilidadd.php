@@ -23,17 +23,6 @@ $dia = date("d",time());
  $fecha2 = $ano.($mes).$dia.$hora;
 
 
-//En proceso de movedera 
-if(($dia == 13) or ($dia == 27)){
-
-    $query5 = "SELECT * FROM ingreso where tipo_ingreso = 'negocio' and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
-    $resultado5 = mysqli_query($conn,$query5);
-    $total5=0; while($row5 = mysqli_fetch_array($resultado5)){$total5=$total5+$row5['cantidad'];}
-    $total5 = (($total5*0.20) );
-    $_SESSION['message2'] = 'Su aproximado para esta quinsena es de: $'.$total5.' Pesos' ;
-    $_SESSION['message_type2'] = 'primary'; 
-}
-
 //Para guardar los datos de la contabilidad diaria
 if((isset($_POST['save'])) and (isset($_SESSION['rol']))){
     $tipo_ingresoN= "negocio";
@@ -60,12 +49,12 @@ if((isset($_POST['save'])) and (isset($_SESSION['rol']))){
     $result = mysqli_query($conn,$query);
     $query2 = "INSERT INTO ingreso(socio,tipo_ingreso,cantidad,detalle) values ('$socio','$tipo_ingresoR','$cantidadR','$detalleR')";
     $result2 = mysqli_query($conn,$query2);
-    $_SESSION['message'] = 'Datos guardados Correctamente, Buen trabajo, pase feliz resto de la noche';
+    $_SESSION['message'] = 'Datos guardados Correctamente.';
     $_SESSION['message_type'] = 'success';
     
 
     if(!$result){
-        $_SESSION['message2'] = 'Datos de negocio no guardados, por introducir valores no numericos, por favor vuelva a Introduscalos nuevamente';
+        $_SESSION['message'] = 'Datos de negocio no guardados, por introducir valores no numericos, por favor vuelva a Introduscalos nuevamente';
         $_SESSION['message_type'] = 'danger';
        ;}
 
@@ -94,10 +83,6 @@ if(($hora3 >= 20) and ($dia == 17)){
     mysqli_query($conn,$query3);
 }
 
-
-
-
-//ESta es la parte de cerrar sección en la cual guarda la hora de salida del software
  }}
-header('location: contabilidadd-vista.php');
+header('location: informe-contabilidadd.php');
 ?>

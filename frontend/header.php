@@ -102,6 +102,9 @@
                         <a  href="informe-venta.php" ><i class="fa fa-shopping-cart " aria-hidden="true"></i> Informe de Ventas</a>
                         </li>
                         <li>
+                        <li>
+                        <a  href="informe-contabilidadd.php" ><i class="fa fa-balance-scale" aria-hidden="true"></i> Informe de Ingresos</a>
+                        </li>
                         <a  href="consultagastonegocio-vista.php" ><i class="fa fa-building" aria-hidden="true"></i> Gastos Negocio</a>
                         </li>
                         <li><a href="consultainversion-vista.php" ><i class="fa fa-chart-bar"></i> Fondo para Inversion</a></li>

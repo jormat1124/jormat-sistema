@@ -41,7 +41,7 @@ $resultado = mysqli_query($conn,$query);?>
       </tr>
       <thead>
       <tr>
-        <th><h2 style="color:#9C2C2E">Total: RD$<?php echo $total;?>.00</h2></th>
+        <th><h2 style="color:#9C2C2E">Total: RD$<?php echo $total;?></h2></th>
       </tr>
 
   </table>
