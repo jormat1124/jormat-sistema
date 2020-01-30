@@ -91,7 +91,7 @@
         </div>
             
             <i>Nota: "Por favor verifique la cantidad".</i>  
-            <br><br><input type="submit" class="btn btn-success btn-block" name="save" value="Añadir avance de efectivo"  >
+            <br><br><input type="submit" class="btn btn-success btn-block" name="saveavance" value="Añadir avance de efectivo"  >
 
          
         

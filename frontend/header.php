@@ -79,6 +79,8 @@
                     <ul class="collapse list-unstyled" id="mnegocio">
 
                         <li><a href="gastonegocio-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> New Gasto Negocio</a></li>
+                        <li><a href="descuento.php" ><i class="fa fa-minus-circle" aria-hidden="true"></i> Descuento</a></li>
+                       
                         <?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
                         <li class="nav-item- active"> <a  href="inversion-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> Inversion General</a></li>
                         <li class="nav-item- active"><a class=" nav-link"href="socio-vista.php"><i class="fa fa-university" aria-hidden="true"></i> Recompensa </a></li>
@@ -107,10 +109,15 @@
                         </li>
                         <a  href="consultagastonegocio-vista.php" ><i class="fa fa-building" aria-hidden="true"></i> Gastos Negocio</a>
                         </li>
+                        </li>
+                        <a  href="consultadescuentos.php" ><i class="fa fa-spinner" aria-hidden="true"></i> Avances Socios</a>
+                        </li>
+
+                       
+                        <?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
                         <li><a href="consultainversion-vista.php" ><i class="fa fa-chart-bar"></i> Fondo para Inversion</a></li>
-                        <li><?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
-                        <a  href="consultapa-vista.php" ><i class="fa fa-object-group" aria-hidden="true"></i> Contabilidad General</a>
-                        <?php break;}}?>  </li>
+                        <li><a  href="consultapa-vista.php" ><i class="fa fa-object-group" aria-hidden="true"></i> Contabilidad General</a></li>
+                        <?php break;}}?>
                         </ul>
                 </li>
                 <li class="nav-item- active"><a class=" nav-link"href="contactos-vista.php"><i class="fa fa-address-book" aria-hidden="true"></i> Contactos</a></li>
