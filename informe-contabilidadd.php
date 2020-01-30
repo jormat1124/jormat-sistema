@@ -24,10 +24,10 @@ else{$dia1 = 16;}
 //Contador para verificar los ingresoss
 $queryIngreso0 = "SELECT * FROM ingreso where tipo_ingreso = 'negocio' and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
 $RIngresosU = mysqli_query($conn,$queryIngreso0);
-$contadorpromedio = 0; $cantidadtotal = 0;
+$contadorpromedio = $dia-$dia1+1; $cantidadtotal = 0;
 while($row0= mysqli_fetch_array($RIngresosU)){
 $cantidadtotal = $cantidadtotal + $row0['cantidad'];
-$contadorpromedio++; }  
+}  
 $estado = $cantidadtotal/$contadorpromedio;
 
 //Query y consulta para que los usuarios puedan verificar los ingresos diarios
@@ -93,15 +93,13 @@ if($estado < 900){
     echo "!!Animo Vamos a dar un poco más!!";
 }
 elseif($estado > 950 and $estado < 1200){
-    echo "!!Muy bien!!, Si sigues así tu aproximado es de 3000";
+    echo "!!Muy bien!!, Si sigues así tu aproximado sera muy bueno";
 }
 elseif($estado > 1200 and $estado < 1500){
-    echo "!!Excelente!!, Si sigues así tu aproximado es de 4000";
+    echo "!!Excelente!!, Si sigues así tu aproximado sera excelente";
 }
 elseif($estado > 1500){
     echo "!!Genial!!, Ahora si que viene la paca";
 }
-
-
 
  include ("frontend/footer.php")?>
