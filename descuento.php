@@ -9,11 +9,23 @@ $resultado0 = mysqli_query($conn,$query0);
 <div class="container p-5">
 <div class= col-md-8> 
 
+<!--Mensaje del descuento-->
+<?php  if(isset($_SESSION['message'])) { 
+        if(($_SESSION['message']) != ($_SESSION['message_type'])){?>
+        <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['message'] ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+<?php }} $_SESSION['message_type']=''; $_SESSION['message']=''; ?>
+
+
 <div class="card card-body -8">
 
         <form action="aefectivo.php" method="post">
             
-        <h1><i class="fa fa-spinner"></i> Descuento Quinsenal</h1>
+        <h1><i class="fa fa-spinner"></i> Descuentos!</h1>
 
         <h3>Aplicar A:</h3>
 

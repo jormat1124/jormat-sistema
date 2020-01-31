@@ -73,18 +73,27 @@ if(isset($_POST['savedescuento'])){
     //$detallec = $_POST['detallec'];
 
     if (empty($cantidad) & empty($cantidadc)){
-        echo 'Ingrese una cantidad';
+        $_SESSION['message'] = 'Ingrese una cantidad';
+        $_SESSION['message_type'] = 'danger';
+        header("location: descuento.php");
         $error = '1222';}
 
     if (empty($detalle) & empty($detallec)){
-        echo 'Ingrese un detalle';
+        $_SESSION['message'] = 'Ingrese un detalle';
+        $_SESSION['message_type'] = 'danger';
+        header("location: descuento.php");
         $error = '1222';}
 
     if (empty($socio)){
-       echo 'Favor Selecional un Socio';
+        $_SESSION['message'] = 'Favor Selecional un Socio';
+        $_SESSION['message_type'] = 'danger';
+        header("location: descuento.php");
         $error = '1222';}
     if($cantidad < 1){
-        echo "Verifique la cantidad debido a que no se pueden agregar valores negativos";
+        $_SESSION['message'] = 'Verifique la cantidad debido a que no se pueden agregar valores negativos';
+        $_SESSION['message_type'] = 'danger';
+        header("location: descuento.php");
+        $error = '1222';
     }
 
         if ($error == ''){
@@ -98,21 +107,47 @@ if(isset($_POST['savedescuento'])){
             if(!$result){
                 $_SESSION['message'] = 'No Guardado correctamente';
                 $_SESSION['message_type'] = 'danger';
+                header("location: descuento.php");
                }
                header("location: consultadescuentos.php");
            }
+           
+
+}
+
+
+    
+    
+
+//Para informal a quien se le izo el descuento y de cuantos fueron
+if(isset($_POST['eliminardescuento'])){ 
+$temp2 = $_POST['eliminardescuento']; 
+
+$quer3 = "select * FROM gastos WHERE id_gasto  = '$temp2'";
+$consultaavance = mysqli_query($conn,$quer3);
+while($row = mysqli_fetch_array($consultaavance)){ 
+     
+    
+    $socio= $row['socio'];
+    $detalle=$row['detalle'];
+    $cantidad=$row['cantidad'];
 }
 
 // Para eliminar el descuento
 
-if(isset($_POST['eliminardescuento'])){ 
-    $temp2 = $_POST['eliminardescuento']; 
-    $quer2 = "DELETE FROM gastos WHERE id_gasto  = '$temp2'";
-    mysqli_query($conn,$quer2);
+
+$quer2 = "DELETE FROM gastos WHERE id_gasto  = '$temp2'";
+mysqli_query($conn,$quer2);
+
+
+// Mensaje y redireccionamiento
     $_POST['eliminardescuento']='';
-    
-    $_SESSION['message'] = 'Eliminado correctamente';
+    $_SESSION['message'] = "Eliminado correctamente Socio: ".$socio." Detalle: ".$detalle." Cantidad: ".$cantidad;
     $_SESSION['message_type'] = 'danger';
+
+
+    
+
 
     header("location: consultadescuentos.php");
 
