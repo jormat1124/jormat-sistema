@@ -67,6 +67,7 @@
                     <ul class="collapse list-unstyled" id="mventas">
 
                     <li>
+                    <a href="factura-vista.php"><i class="fa fa-shopping-bag"></i> Vender</a>
                     <a  href="articulo-vista.php" > <i class="fa fa-plus-circle" aria-hidden="true"></i> Articulos</a>
                     </li>
                     
@@ -77,7 +78,7 @@
                 <li class="active">
                     <a href="#mnegocio" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-building" aria-hidden="true"></i> Negocio</a>
                     <ul class="collapse list-unstyled" id="mnegocio">
-
+                    <li><a href="ingreso-vista.php"><i class="fa fa-plus-circle"></i> Ingreso</a></li>
                         <li><a href="gastonegocio-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> New Gasto Negocio</a></li>
                         <li><a href="descuento.php" ><i class="fa fa-minus-circle" aria-hidden="true"></i> Descuento</a></li>
                        
@@ -100,17 +101,22 @@
                 <li class="active">
                     <a href="#minformes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-chart-bar"></i> Informes</a>
                     <ul class="collapse list-unstyled" id="minformes">
+
+                        
                         <li>
                         <a  href="informe-venta.php" ><i class="fa fa-shopping-cart " aria-hidden="true"></i> Informe de Ventas</a>
                         </li>
                         <li>
-                        <li>
-                        <a  href="informe-contabilidadd.php" ><i class="fa fa-balance-scale" aria-hidden="true"></i> Informe de Ingresos</a>
+                        <a href="consultaingresonegocio-vista.php"><i class="fa fa-rocket" aria-hidden="true"></i> Ingresos Diario</a>
                         </li>
+                        <li>
                         <a  href="consultagastonegocio-vista.php" ><i class="fa fa-building" aria-hidden="true"></i> Gastos Negocio</a>
                         </li>
-                        </li>
+                        <li>
                         <a  href="consultadescuentos.php" ><i class="fa fa-spinner" aria-hidden="true"></i> Avances Socios</a>
+                        </li>
+                        <li>
+                        <a  href="informe-contabilidadd.php" ><i class="fa fa-balance-scale" aria-hidden="true"></i> Como Voy?</a>
                         </li>
 
                        

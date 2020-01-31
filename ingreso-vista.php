@@ -42,7 +42,7 @@ if(!isset($_SESSION['rol'])) {header('location: login.php');}
 
         <div class="form-group">
         <label for="exampleInputEmail1">Cantidad</label>
-        <input type="text" name="cantidad" class="form-control" placeholder="Cantidad" autofocus>
+        <input type="number" name="cantidad" class="form-control" placeholder="Cantidad" autofocus>
         </div>
 
         <div class="form-group">
