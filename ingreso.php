@@ -9,8 +9,8 @@ if(isset($_POST['save'])){
     $cantidad = $_POST['cantidad'];
     $detalle = $_POST['detalle'];
 
-    
-    if (empty($socio) or empty($tipo_ingreso) or empty($cantidad) or empty($detalle)){
+
+    if (empty($socio) or empty($tipo_ingreso) or empty($cantidad) or empty($detalle)or){
         $_SESSION['message'] = 'Por favor verificar todos los campos';
         $_SESSION['message_type'] = 'danger';
         $error = '1222';}

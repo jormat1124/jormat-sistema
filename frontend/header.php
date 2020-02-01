@@ -80,7 +80,7 @@
                     <ul class="collapse list-unstyled" id="mnegocio">
                     <li><a href="ingreso-vista.php"><i class="fa fa-plus-circle"></i> Ingreso</a></li>
                         <li><a href="gastonegocio-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> New Gasto Negocio</a></li>
-                        <li><a href="descuento.php" ><i class="fa fa-minus-circle" aria-hidden="true"></i> Descuento</a></li>
+                        <li><a href="descuento.php" ><i class="fa fa-minus-circle" aria-hidden="true"></i> Descuento Socio</a></li>
                        
                         <?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
                         <li class="nav-item- active"> <a  href="inversion-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> Inversion General</a></li>

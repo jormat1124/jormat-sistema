@@ -29,12 +29,7 @@ if(!isset($_SESSION['rol'])) {header('location: login.php');}
         <input type="radio" class="form-check-input" value="hogar"name="inlineMaterialRadiosExample">
         <label class="form-check-label" for="materialInline1">Hogares</label>
         </div>
-
-        <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="juego" name="inlineMaterialRadiosExample">
-        <label class="form-check-label" for="materialInline3">Juego</label>
-        </div>
-
+        
         <div class="form-group form-check-inline">
         <input type="radio" class="form-check-input" value="otros" name="inlineMaterialRadiosExample">
         <label class="form-check-label" for="materialInline3">Otros</label>
