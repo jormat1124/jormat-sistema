@@ -78,7 +78,7 @@
                 <li class="active">
                     <a href="#mnegocio" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-building" aria-hidden="true"></i> Negocio</a>
                     <ul class="collapse list-unstyled" id="mnegocio">
-                    <li><a href="ingreso-vista.php"><i class="fa fa-plus-circle"></i> Ingreso</a></li>
+                    <li><a href="ingresoN-vista.php"><i class="fa fa-plus-circle"></i> Ingreso</a></li>
                         <li><a href="gastonegocio-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> New Gasto Negocio</a></li>
                         <li><a href="descuento.php" ><i class="fa fa-minus-circle" aria-hidden="true"></i> Descuento Socio</a></li>
                        
@@ -148,7 +148,7 @@
              <!--Opciones vasicas--> 
             <a class="navbar-brand d-none d-sm-inline "href="principal-vista.php"> Jormat System</a>
             <a class="navbar-brand d-none d-sm-inline"href="factura-vista.php"><i class="fa fa-shopping-bag fa-1x"></i> Vender</a>
-            <a class="navbar-brand d-none d-sm-inline"href="ingreso-vista.php"><i class="fa fa-plus-circle fa-1x"></i> Ingreso</a>
+            <a class="navbar-brand d-none d-sm-inline"href="ingresoN-vista.php"><i class="fa fa-plus-circle fa-1x"></i> Ingreso</a>
 
             </div>
             <!--Nombre del usuario-->

@@ -272,7 +272,7 @@ if($id_cnomina=="0"){
 }
 else
 {
-echo $id_cnomina;
+
   //Para actualizar la nomina si no se encuentra guardada
   $id_cnomina = $id_cnomina - 2;
   $conttotalnomina2=0; while($conttotalnomina2 < $contusuarios){ 
