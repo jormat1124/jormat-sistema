@@ -5,18 +5,6 @@ if(!isset($_SESSION['rol'])) {header('location: login.php');}
 
 <div class="container p-5">
 <div class= col-md-8> 
-
-    
-    <?php if(isset($_SESSION['message'])) { 
-        if(($_SESSION['message']) != ($_SESSION['message_type'])){?>
-        <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
-        <?= $_SESSION['message'] ?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-    <?php }} $_SESSION['message_type']=''; $_SESSION['message']=''; ?>
-
 <div class="card card-body -8">
 
         <form action="ingreso.php" method="post">
