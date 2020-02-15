@@ -50,6 +50,17 @@ $RIngresos2 = mysqli_query($conn,$queryIngreso);
 $queryVenta = "SELECT f.num_factura,f.factura,a.articulo,a.precio_venta,f.cantidad,f.rebaja,f.total_venta,f.total_ganancia,f.fecha_venta FROM articulos a inner join factura f on a.id_articulo = f.l_id_articulo where f.fecha_venta BETWEEN '$fecha1' and '$fecha2' ";
 $Rventa = mysqli_query($conn,$queryVenta);
 $Rventa2 = mysqli_query($conn,$queryVenta);
+
+//Consulta para los insentivos de los usuarios
+$cont3 = 0;
+while($cont3 < $contusuarios ){
+$queryInsentivo[$cont3] = "SELECT * FROM ingreso where (tipo_ingreso = 'insentivo' and socio = '$usuarios[$cont3]') and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
+$RInsentivo[$cont3] = mysqli_query($conn,$queryInsentivo[$cont3]);
+$RInsentivo2[$cont3] = mysqli_query($conn,$queryInsentivo[$cont3]);
+$cont3++;
+}
+
+
 //Html para el guardado de la nomina
 ?>
 <br>
@@ -73,7 +84,7 @@ $Rventa2 = mysqli_query($conn,$queryVenta);
 
 <!--Para mostrar los gatos de cada usuario registrado en el login-->    
   
-<?php $contU=0; $totalavanceusuarios=0; while($contU < $contusuarios){ ?>
+<?php $contU=0; $totalavanceusuarios=0; $totalinsentivousuarios=0; while($contU < $contusuarios){ ?>
 <tr>
 <td style="color:#018E6E;"><?php echo $usuarios[$contU]?> !Avance!</td>
 <?php $avance[$contU]=0; while( $row[$contU] = mysqli_fetch_array($resultado[$contU])){$avance[$contU]=$avance[$contU]+$row[$contU]['cantidad'];} ?>
@@ -85,8 +96,8 @@ $Rventa2 = mysqli_query($conn,$queryVenta);
 //Para sacar el total de los avances de todos los usuarioss
 $totalavanceusuarios=$totalavanceusuarios+$avance[$contU];
 //Para mostrar de forma detallada lo de cada usuario
-if((isset($_POST['buscar'])) and ($_POST['buscar']==$contU)){?>
 
+if((isset($_POST['buscar'])) and ($_POST['buscar']==$contU)){?>
 <thead>
       <tr>
         <th>Detalle</th>
@@ -214,6 +225,7 @@ $totalnegocio = $totalavanceusuarios+$totalGeneradoNegocio;?>
       <tr>
         <th>Ganancia Socios</th>
         <th>Sub-Total</th>
+        <th>INSENTIVO</th>
         <th>Descuento</th>
         <th>Total-Neto</th>
         
@@ -226,12 +238,15 @@ $totalnegocio = $totalavanceusuarios+$totalGeneradoNegocio;?>
 
 //Total de las nominas de todos los usuarios
 $contnominap=0; while($contnominap < $contusuarios){ 
+
+//Insetivos del susuario  
+$insentivo[$contnominap]=0; while( $row[$contnominap] = mysqli_fetch_array($RInsentivo[$contnominap])){$insentivo[$contnominap]=$insentivo[$contnominap]+$row[$contnominap]['cantidad'];}
+//Para sacar los totales de los usuarios
 $totalnominausuario[$contnominap] = $totaltotal*($porciento[$contnominap]/100);
-$totalnetodelusuario[$contnominap] = (($totaltotal*($porciento[$contnominap]/100))-$avance[$contnominap]); 
+$totalnetodelusuario[$contnominap] = ((($totaltotal*($porciento[$contnominap]/100))+$insentivo[$contnominap])-$avance[$contnominap]); 
 $contnominap++;}
 //Mostrados de los totales de las nominas de los usuarios
    $contnomina=1; while($contnomina < $contusuarios){ ?>
-
     <tr>
     <td><?php echo $usuarios[$contnomina]?></td>
     <?php //total de la nomina del usuario
@@ -239,6 +254,7 @@ $contnominap++;}
     // Total neto de usuario
     ?>
     <td style="color:#4F0847;font-size:30px;">$<?php echo $totalnominausuario[$contnomina];?></td> 
+    <td style="color:#FF5733;font-size:30px;">$<?php echo  $insentivo[$contnomina];?></td>
     <td style="color:#E30529;font-size:30px;">$<?php echo  $avance[$contnomina];?></td>
     <td style="color:#0593E3;font-size:30px;">$<?php echo $totalnetodelusuario[$contnomina];?></td> 
     </tr>
@@ -265,18 +281,20 @@ while($rowctn =mysqli_fetch_array($Rconnomina)){$id_cnomina= $rowctn['id_nomina'
 if($id_cnomina=="0"){
 //Para guardar la nomina si no esta guardada
   $conttotalnomina=0; while($conttotalnomina < $contusuarios){ 
-    $querytno = "INSERT INTO nomina(socio_nombre,porciento_socio,total_nomina,total_descuento,total_neto) values ('$usuarios[$conttotalnomina]','$porciento[$conttotalnomina]','$totalnominausuario[$conttotalnomina]','$avance[$conttotalnomina]','$totalnetodelusuario[$conttotalnomina]')";
+    $querytno = "INSERT INTO nomina(socio_nombre,porciento_socio,incentivo,total_nomina,total_descuento,total_neto) values ('$usuarios[$conttotalnomina]','$porciento[$conttotalnomina]','$insentivo[$conttotalnomina]','$totalnominausuario[$conttotalnomina]','$avance[$conttotalnomina]','$totalnetodelusuario[$conttotalnomina]')";
     $result = mysqli_query($conn,$querytno);
+    if(!$result){
+      echo "No esta funcionando";    }
     $conttotalnomina++;} 
     echo "Nomina Guardada ";
 }
 else
 {
-
+  $usuariocantidad = $contusuarios - 1;
   //Para actualizar la nomina si no se encuentra guardada
-  $id_cnomina = $id_cnomina - 2;
+  $id_cnomina = $id_cnomina - $usuariocantidad;
   $conttotalnomina2=0; while($conttotalnomina2 < $contusuarios){ 
-    $querytno2 = "UPDATE nomina SET porciento_socio='$porciento[$conttotalnomina2]',total_nomina='$totalnominausuario[$conttotalnomina2]',total_descuento='$avance[$conttotalnomina2]',total_neto='$totalnetodelusuario[$conttotalnomina2]',fecha='$fechayhoraactual' WHERE id_nomina = $id_cnomina;";
+    $querytno2 = "UPDATE nomina SET porciento_socio='$porciento[$conttotalnomina2]',incentivo='$insentivo[$conttotalnomina2]',total_nomina='$totalnominausuario[$conttotalnomina2]',total_descuento='$avance[$conttotalnomina2]',total_neto='$totalnetodelusuario[$conttotalnomina2]',fecha='$fechayhoraactual' WHERE id_nomina = $id_cnomina;";
     $result = mysqli_query($conn,$querytno2);
     $conttotalnomina2++;
     $id_cnomina++;} 
