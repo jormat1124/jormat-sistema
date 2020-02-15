@@ -9,8 +9,8 @@ if(!isset($_SESSION['rol'])) {header('location: login.php');}
 
         <form action="ingreso.php" method="post">
             
-        <h1>Ingreso de Games</h1>
-        <p>Por favor especique en el detalle a que juego pertenece.</p>
+        <h1><i class="fa fa-gamepad" aria-hidden="true"></i> Ingreso de Games</h1>
+        <p>Por favor especique en el detalle a que juego pertenece, debido a que los juegos tienen su modulo.</p>
 
         <div class="form-group">
         <label for="exampleInputEmail1">Ganancia</label>

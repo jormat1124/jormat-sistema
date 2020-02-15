@@ -78,7 +78,8 @@
                 <li class="active">
                     <a href="#mnegocio" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-building" aria-hidden="true"></i> Negocio</a>
                     <ul class="collapse list-unstyled" id="mnegocio">
-                    <li><a href="ingresoN-vista.php"><i class="fa fa-plus-circle"></i> Ingreso</a></li>
+                    <li><a href="ingresoN-vista.php"><i class="fa fa-plus-circle"></i> Ingreso Negocio</a></li>
+                    <li><a href="ingresoGam-vista.php"><i class="fa fa-plus-circle"></i> Ingreso Game</a></li>
                         <li><a href="gastonegocio-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> New Gasto Negocio</a></li>
                         <li><a href="descuento.php" ><i class="fa fa-minus-circle" aria-hidden="true"></i> Descuento Socio</a></li>
                        
@@ -147,8 +148,10 @@
             </button>
              <!--Opciones vasicas--> 
             <a class="navbar-brand d-none d-sm-inline "href="principal-vista.php"> Jormat System</a>
+            <a class="navbar-brand d-none d-sm-inline"href="factura-vista.php"><i class="fa fa-home" aria-hidden="true"></i></i> Hogares</a>
             <a class="navbar-brand d-none d-sm-inline"href="factura-vista.php"><i class="fa fa-shopping-bag fa-1x"></i> Vender</a>
-            <a class="navbar-brand d-none d-sm-inline"href="ingresoN-vista.php"><i class="fa fa-plus-circle fa-1x"></i> Ingreso</a>
+            <a class="navbar-brand d-none d-sm-inline"href="ingresoN-vista.php"><i class="fa fa-plus-circle fa-1x"></i> Negocio</a>
+            <a class="navbar-brand d-none d-sm-inline"href="ingresoGam-vista.php"><i class="fa fa-gamepad" aria-hidden="true"></i> Game</a>
 
             </div>
             <!--Nombre del usuario-->
