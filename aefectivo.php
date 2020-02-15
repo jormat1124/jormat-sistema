@@ -10,8 +10,8 @@ if(isset($_POST['saveavance'])){
     $socio = $_SESSION['nombre'];
     $cantidad = $_POST['cantidad'];
     $detalle = $_POST['detalle'];
-    //$cantidadc = $_POST['cantidadc'];
-    //$detallec = $_POST['detallec'];
+    $cantidadc = $_POST['cantidadc'];
+    $detallec = $_POST['detallec'];
 
 
     if (empty($cantidad) & empty($cantidadc)){
@@ -138,11 +138,6 @@ mysqli_query($conn,$quer2);
     $_POST['eliminardescuento']='';
     $_SESSION['message'] = "Eliminado correctamente Socio: ".$socio." Detalle: ".$detalle." Cantidad: ".$cantidad;
     $_SESSION['message_type'] = 'danger';
-
-
-    
-
-
     header("location: consultadescuentos.php");
 
    }

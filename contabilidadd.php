@@ -65,7 +65,7 @@ if((isset($_POST['save'])) and (isset($_SESSION['rol']))){
 
    if(($hora3 >= 20) and ($dia == 2)){
 
-    $query = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','2500','Local & Internet')";
+    $query = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','2000','Local & Internet')";
     mysqli_query($conn,$query);
     $query2 = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','500','Ahorro para Inversion')";
     mysqli_query($conn,$query2);
@@ -75,7 +75,7 @@ if((isset($_POST['save'])) and (isset($_SESSION['rol']))){
 }
 if(($hora3 >= 20) and ($dia == 17)){
 
-    $query = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','2500','Local & Internet')";
+    $query = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','2000','Local & Internet')";
     mysqli_query($conn,$query);
     $query2 = "INSERT INTO gastos(socio,tipo_gasto,cantidad,detalle) values ('$socio','gastonegocio','500','Ahorro para Inversion')";
     mysqli_query($conn,$query2);
