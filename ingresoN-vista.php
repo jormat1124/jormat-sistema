@@ -12,7 +12,7 @@ if(!isset($_SESSION['rol'])) {header('location: login.php');}
         <h1><i class="fa fa-plus-circle" aria-hidden="true"></i> Ingreso de efectivo</h1>
 
         <br><h3>Tipo de ingreso*</h3>
-        <i>"Tenga pendiente que la recarga no pertenece a juegos"</i>
+        <i>"Tenga pendiente que la recarga/tarjeta no pertenece a juegos, debido a que los juegos tiene su modulo."</i>
         <p></p>
 
         <div class="form-group form-check-inline">

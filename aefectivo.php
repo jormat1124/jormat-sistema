@@ -115,18 +115,12 @@ if(isset($_POST['savedescuento'])){
 
 }
 
-
-    
-    
-
 //Para informal a quien se le izo el descuento y de cuantos fueron
 if(isset($_POST['eliminardescuento'])){ 
 $temp2 = $_POST['eliminardescuento']; 
-
 $quer3 = "select * FROM gastos WHERE id_gasto  = '$temp2'";
 $consultaavance = mysqli_query($conn,$quer3);
 while($row = mysqli_fetch_array($consultaavance)){ 
-     
     
     $socio= $row['socio'];
     $detalle=$row['detalle'];

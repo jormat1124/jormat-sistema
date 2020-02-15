@@ -84,6 +84,7 @@
                         <li><a href="descuento.php" ><i class="fa fa-minus-circle" aria-hidden="true"></i> Descuento Socio</a></li>
                        
                         <?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
+                            <li class="nav-item- active"> <a  href="insentivo.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> Insentivo</a></li>
                         <li class="nav-item- active"> <a  href="inversion-vista.php" ><i class="fa fa-plus-circle" aria-hidden="true"></i> Inversion General</a></li>
                         <li class="nav-item- active"><a class=" nav-link"href="socio-vista.php"><i class="fa fa-university" aria-hidden="true"></i> Recompensa </a></li>
                         <?php break;}}?>
