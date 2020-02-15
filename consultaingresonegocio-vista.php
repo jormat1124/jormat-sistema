@@ -40,6 +40,7 @@ $resultado = mysqli_query($conn,$query);?>
       <tr>
         
         <th>Detalle</th>
+        <th>Tipo de Ingreso</th>
         <th>Cantidad</th>
         <th>Fecha</th>
       </tr>
@@ -48,6 +49,7 @@ $resultado = mysqli_query($conn,$query);?>
       <tr>
         
         <td><?php echo $row['detalle']?></td>
+        <td><?php echo $row['tipo_ingreso']?></td>
         <td style="color:#FD3C40">$<?php echo $row['cantidad']?></td>
         <td><?php echo $row['fecha_ingreso']; $total=$total+$row['cantidad']; } ?></td>
         

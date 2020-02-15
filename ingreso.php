@@ -12,7 +12,7 @@ if(isset($_POST['save'])){
     $detalle = $_POST['detalle'];
 
 
-    if (empty($socio) or empty($cantidad) or empty($detalle)){
+    if (empty($cantidad) or empty($detalle)){
         $_SESSION['message'] = 'Por favor verificar todos los campos';
         $_SESSION['message_type'] = 'danger';
         $error = '1222';}      
@@ -26,7 +26,7 @@ if(isset($_POST['save'])){
 
    if(isset($_POST['tarjeta'])){
     $tarjeta = $_POST['tarjeta'];
-    if(($error == '') or ($tarjeta>='1')){
+    if(($error != '') or ($tarjeta <= '1')){
     $_SESSION['message'] = '"No guardado", Por favor ingresar datos positivos en la recarga';
     $_SESSION['message_type'] = 'danger';
     $error = '1222';}
