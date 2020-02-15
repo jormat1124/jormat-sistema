@@ -149,7 +149,7 @@
             </button>
              <!--Opciones vasicas--> 
             <a class="navbar-brand d-none d-sm-inline "href="principal-vista.php"> Jormat System</a>
-            <a class="navbar-brand d-none d-sm-inline"href="factura-vista.php"><i class="fa fa-home" aria-hidden="true"></i></i> Hogares</a>
+            <a class="navbar-brand d-none d-sm-inline"href=""><i class="fa fa-home" aria-hidden="true"></i></i> Hogares</a>
             <a class="navbar-brand d-none d-sm-inline"href="factura-vista.php"><i class="fa fa-shopping-bag fa-1x"></i> Vender</a>
             <a class="navbar-brand d-none d-sm-inline"href="ingresoN-vista.php"><i class="fa fa-plus-circle fa-1x"></i> Negocio</a>
             <a class="navbar-brand d-none d-sm-inline"href="ingresoGam-vista.php"><i class="fa fa-gamepad" aria-hidden="true"></i> Game</a>

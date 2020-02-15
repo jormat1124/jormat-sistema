@@ -24,65 +24,42 @@
 
         <br><h3>Cantidad*</h3>
 
-        <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="5"name="cantidadc">
-        <label class="form-check-label" for="materialInline1">5 Pesos</label>
-        </div>
-
-        <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="10" name="cantidadc">
-        <label class="form-check-label" for="materialInline3">10 Pesos</label>
-        </div>
-
-        <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="15" name="cantidadc">
-        <label class="form-check-label" for="materialInline3">15 Pesos</label>
-        </div>
-
-        <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="20" name="cantidadc">
-        <label class="form-check-label" for="materialInline3">20 Pesos</label>
-        </div>
-
-        <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="25" name="cantidadc">
-        <label class="form-check-label" for="materialInline3">25 Pesos</label>
-        </div>
+      
 
         <div class="form-group">
-        <input type="text" name="cantidad" class="form-control" placeholder="Otra cantidad" autofocus>
+        <input type="text" name="cantidad" class="form-control" placeholder="Cantidad" autofocus>
         </div>
 
         <br><h3>Detalle*</h3>
         
         <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="Agua"name="detallec">
-        <label class="form-check-label" for="materialInline1">Agua</label>
+        <input type="radio" class="form-check-input" value="Desayuno"name="detallec">
+        <label class="form-check-label" for="materialInline1">Desayuno</label>
         </div>
 
         <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="Jugo"name="detallec">
-        <label class="form-check-label" for="materialInline1">Jugo</label>
+        <input type="radio" class="form-check-input" value="Merienda"name="detallec">
+        <label class="form-check-label" for="materialInline1">Merienda</label>
         </div>
 
         <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="chulo"name="detallec">
-        <label class="form-check-label" for="materialInline1">Chulo</label>
+        <input type="radio" class="form-check-input" value="Gatorade"name="detallec">
+        <label class="form-check-label" for="materialInline1">Gatorade</label>
         </div>
 
         <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="Galletica"name="detallec">
-        <label class="form-check-label" for="materialInline1">Galletica</label>
+        <input type="radio" class="form-check-input" value="Refreco"name="detallec">
+        <label class="form-check-label" for="materialInline1">Refreco</label>
         </div>
 
         <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="tostada"name="detallec">
+        <input type="radio" class="form-check-input" value="Tostada"name="detallec">
         <label class="form-check-label" for="materialInline1">Tostada</label>
         </div>
 
         <div class="form-group form-check-inline">
-        <input type="radio" class="form-check-input" value="Chito"name="detallec">
-        <label class="form-check-label" for="materialInline1">Chito</label>
+        <input type="radio" class="form-check-input" value="Agua"name="detallec">
+        <label class="form-check-label" for="materialInline1">Agua</label>
         </div>
 
 
