@@ -102,7 +102,7 @@ if(isset($_SESSION['message'])) {
         </div>
             
             <i>Nota: "Por favor verifique la cantidad", debido a que despues de aplicado no se puede cambiar</i>  
-            <br><br><input type="submit" class="btn btn-success btn-block" name="saveinsentivo" value="Aplicar Descuento">        
+            <br><br><input type="submit" class="btn btn-success btn-block" name="saveinsentivo" value="Aplicar Insentivo">        
     </form>
     </div>
 </div>

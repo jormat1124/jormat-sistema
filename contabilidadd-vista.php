@@ -3,7 +3,7 @@
  if(!isset($_SESSION['rol'])) {header('location: login.php');}
  ini_set('date.timezone','America/Santo_Domingo');
 $horal = date("H",time());
-if($horal >16 & $horal <24){
+if($horal >12 & $horal <24){
 
 $nombre = $_SESSION['nombre'];
 
@@ -26,6 +26,9 @@ $resultado3 = mysqli_query($conn,$query3);
 
 $query4 = "SELECT * FROM factura where (socio = '$nombre') and fecha_venta BETWEEN '$fecha1' and '$fecha2'";
 $resultado4 = mysqli_query($conn,$query4);
+
+$query5 = "SELECT * FROM ingreso where (socio = '$nombre' and tipo_ingreso = 'tarjeta') and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
+$resultado5 = mysqli_query($conn,$query5);
 
 ?>
 <div class="container">
@@ -54,6 +57,12 @@ $resultado4 = mysqli_query($conn,$query4);
     <td><?php echo $total2  ?></td> 
     </tr>
 
+    <tr>
+    <td>Tarjeta</td>
+    <?php $total5=0; while($row5 = mysqli_fetch_array($resultado5)){$total5=$total5+$row5['cantidad'];} ?>
+    <td><?php echo $total5  ?></td> 
+    </tr>
+
 
     <tr>
     <td>Ventas</td>
@@ -63,7 +72,7 @@ $resultado4 = mysqli_query($conn,$query4);
     </tr>
 
       <tr>
-        <th><h2 style="color:#9C2C2E">Ingresos X: $<?php echo $total1+$total2;?> </h2><h2 style="color:#9C2C2E">Ventas: $<?php echo $total4;?> </h2></h2><h2 style="color:#9C2C2E">Recargas turno anterior: $<?php echo $total3;?> </h2><br><i style="color:#CB2629">Nota: Las recargas se encuentrar dentro de la contabilidad, solo se muestra para que pueda sacar el total de la misma y ponerlo de forma individual, los Ingresos X y las ventas se encuentran dentro de la contabilidad, por lo cual hay que ponerlo aparte.</i></th>  
+        <th><h2 style="color:#9C2C2E">Ingresos X: $<?php echo $total1+$total2+$total5;?> </h2><h2 style="color:#9C2C2E">Ventas: $<?php echo $total4;?> </h2></h2><h2 style="color:#9C2C2E">Recargas turno anterior: $<?php echo $total3;?> </h2><br><i style="color:#CB2629">Nota: Las recargas se encuentrar dentro de la contabilidad, solo se muestra para que pueda sacar el total de la misma y ponerlo de forma individual, los Ingresos X y las ventas se encuentran dentro de la contabilidad, por lo cual hay que ponerlo aparte.</i></th>  
         <th><a href="consultaingresonegocio-vista.php"  class="btn btn-danger"> Verificar Ingresos</a><a href="informe-venta.php"  class="btn btn-warning"> Verificar Ventas </a></th>
     
      </tr>

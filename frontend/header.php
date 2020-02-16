@@ -198,7 +198,7 @@
                         
                     
                         <?php  if($hora >=12 & $hora <=15){ ?><a href="#ventana3" class="dropdown-item" data-toggle="modal"><i class="fas fa-coffee"></i> Receso</a>
-                        <?php }if($hora >=16 & $hora <=23){?>
+                        <?php }if($hora >=12 & $hora <=23){?>
                         
                         <a class="dropdown-item" href="contabilidadd-vista.php">
                         <i class="fa  fa-university"></i> Cuadre Diario
