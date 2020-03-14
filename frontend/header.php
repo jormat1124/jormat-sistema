@@ -124,6 +124,7 @@
 
                        
                         <?php  if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:?>
+                            <li> <a  href="movimiento-efectivo-vista.php" ><i class="fa fa-desktop" aria-hidden="true"></i> Manejo de efectivo</a></li>
                         <li><a href="consultainversion-vista.php" ><i class="fa fa-chart-bar"></i> Fondo para Inversion</a></li>
                         <li><a  href="consultapa-vista.php" ><i class="fa fa-object-group" aria-hidden="true"></i> Contabilidad General</a></li>
                         <?php break;}}?>
