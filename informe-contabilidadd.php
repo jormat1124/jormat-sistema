@@ -65,7 +65,7 @@ else
 
 <h2><i class="fa fa-balance-scale" aria-hidden="true"></i> Listado de ingresos 
 </h2>
-<p>Nota: Ingresos pertenecientes a esta quiencena.</p>
+<p>Nota: Ingresos pertenecientes al negocio.</p>
 <table class="table table-striped">
 <thead>
       <tr>

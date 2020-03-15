@@ -189,26 +189,14 @@
                         
                         <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
                         
-                        <a class="dropdown-item" href="#ventana1" data-toggle="modal" >
-                         <i class="fa fa-lock-open"></i> Cambiar Contraceña
-                        </a>
-
+                        <a class="dropdown-item" href="#ventana1" data-toggle="modal" ><i class="fa fa-lock-open"></i> Cambiar Contraceña</a>
                         <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
-                        <!--Para actualizar la hora actual--> 
-                        <?php ini_set('date.timezone','America/Santo_Domingo'); $hora = date("H",time()); ?>
-                        <!--Opciones de break y salir con horario estatico--> 
-                        
-                    
-                        <?php  if($hora >=12 & $hora <=15){ ?><a href="#ventana3" class="dropdown-item" data-toggle="modal"><i class="fas fa-coffee"></i> Receso</a>
-                        <?php }if($hora >=12 & $hora <=23){?>
-                        
-                        <a class="dropdown-item" href="contabilidadd-vista.php">
-                        <i class="fa  fa-university"></i> Cuadre Diario
-                        </a>
+                        <a class="dropdown-item" href="contabilidadd-vista.php"><i class="fa  fa-university"></i> Cuadre Diario</a>
                         <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
-                        
+                        <a href="#ventana3" class="dropdown-item" data-toggle="modal"><i class="fas fa-coffee"></i> Receso</a>
+                        <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
                         <a href="#ventana4" class="dropdown-item" data-toggle="modal"><i class="fas fa-times "></i> Close</a>
-                        <?php } ?>
+                        
 
                         
                     </div>

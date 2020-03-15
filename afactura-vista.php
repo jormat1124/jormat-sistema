@@ -118,6 +118,7 @@ $resultado = mysqli_query($conn,$query); ?>
   <tr>
     <th>Articulo</th>
     <th>Detalle</th>
+    <th width="3">Cantidad</th>
     <th>P-Venta</th>
     <th>Existencia</th>
     <th>Opciones</th>
@@ -129,7 +130,10 @@ $resultado = mysqli_query($conn,$query); ?>
 <tr>
         <td><?php echo $row['articulo']?></td>
         <td><?php echo $row['detalle']?></td>
-        <td><?php echo $row['precio_venta']?></td>
+        <td><input type="text" name="cantidad" class="form-control" value="1"></td>
+        <td>
+        
+        <?php echo $row['precio_venta']?></td>
         <td style="color:#FD3C40; font-size:30px"><?php echo $row['existencia']?></td>
         <td>
           <button class="btn btn-success" type="submit" name="anadir" value="<?php echo $row['id_articulo']?>" >Añadir</button> 

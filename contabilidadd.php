@@ -13,9 +13,6 @@ $dia = date("d",time());
  $hora = date(" H:i:s",time());
  $hora1 = " 05:00:00";
  $hora3 = date("H",time());     
- $horal = date("H",time());
-
- if($horal >16 & $horal <24){
 
  if($dia<=15){$dia1 = 1;}else{$dia1 = 16;}
 
@@ -28,9 +25,9 @@ if((isset($_POST['save'])) and (isset($_SESSION['rol']))){
     $tipo_ingresoN= "negocio";
     $cantidadN = $_POST['cantidadn'];
     $detalleN = "Ingresos diarios negocio";
-    $tipo_ingresoR= "recarga";
-    $cantidadR = $_POST['cantidadr'];
-    $detalleR = "Ingresos diarios recargas";
+    //$tipo_ingresoR= "recarga";
+    //$cantidadR = $_POST['cantidadr'];
+    //$detalleR = "Ingresos diarios recargas";
        
     if($cantidadN <= '-1'){
         $_SESSION['message'] = 'Por favor ingresar valores positivos, vuelva a introducir todos los datos nuevamente';
@@ -38,17 +35,18 @@ if((isset($_POST['save'])) and (isset($_SESSION['rol']))){
         $error = '1222';
         header('location: contabilidadd-vista.php');}
 
-    if($cantidadR <= '-1'){
+    /*if($cantidadR <= '-1'){
         $_SESSION['message'] = 'Por favor ingresar valores positivos, vuelva a introducir todos los datos nuevamente';
         $_SESSION['message_type'] = 'danger';
         $error = '1222';
         header('location: contabilidadd-vista.php');}
-
+*/
    if ($error == ''){
     $query = "INSERT INTO ingreso(socio,tipo_ingreso,cantidad,detalle) values ('$socio','$tipo_ingresoN','$cantidadN','$detalleN')";
     $result = mysqli_query($conn,$query);
-    $query2 = "INSERT INTO ingreso(socio,tipo_ingreso,cantidad,detalle) values ('$socio','$tipo_ingresoR','$cantidadR','$detalleR')";
+    /*$query2 = "INSERT INTO ingreso(socio,tipo_ingreso,cantidad,detalle) values ('$socio','$tipo_ingresoR','$cantidadR','$detalleR')";
     $result2 = mysqli_query($conn,$query2);
+    */
     $_SESSION['message'] = 'Datos guardados Correctamente.';
     $_SESSION['message_type'] = 'success';
     
@@ -83,6 +81,6 @@ if(($hora3 >= 20) and ($dia == 17)){
     mysqli_query($conn,$query3);
 }
 
- }}
+ }
 header('location: informe-contabilidadd.php');
 ?>

@@ -2,8 +2,6 @@
 <?php include("frontend/header.php");
  if(!isset($_SESSION['rol'])) {header('location: login.php');}
  ini_set('date.timezone','America/Santo_Domingo');
-$horal = date("H",time());
-if($horal >12 & $horal <24){
 
 $nombre = $_SESSION['nombre'];
 
@@ -21,7 +19,7 @@ $resultado1 = mysqli_query($conn,$query1);
 $query2 = "SELECT * FROM ingreso where (socio = '$nombre' and tipo_ingreso = 'negocio') and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
 $resultado2 = mysqli_query($conn,$query2);
 
-$query3 = "SELECT * FROM ingreso where (tipo_ingreso = 'recarga') and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
+$query3 = "SELECT * FROM ingreso where (socio = '$nombre' and tipo_ingreso = 'recarga') and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
 $resultado3 = mysqli_query($conn,$query3);
 
 $query4 = "SELECT * FROM factura where (socio = '$nombre') and fecha_venta BETWEEN '$fecha1' and '$fecha2'";
@@ -30,13 +28,19 @@ $resultado4 = mysqli_query($conn,$query4);
 $query5 = "SELECT * FROM ingreso where (socio = '$nombre' and tipo_ingreso = 'tarjeta') and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
 $resultado5 = mysqli_query($conn,$query5);
 
+//Recargas de ambos turnos
+
+$recargas = "SELECT * FROM ingreso where ( tipo_ingreso = 'recarga') and fecha_ingreso BETWEEN '$fecha1' and '$fecha2'";
+$rrecargas = mysqli_query($conn,$recargas);
+
 ?>
 <div class="container">
 <br>
 <!--Consultas para ver los ingresos-->
 <div class="card card-body ">
 <div class="container">
-<h2>Contabilidad</h2>           
+<h2>Contabilidad</h2>       
+<h5>Listado de totales pertenecientes a usted</h5>    
  <table class="table table-striped">
     <thead>
       <tr>
@@ -67,12 +71,25 @@ $resultado5 = mysqli_query($conn,$query5);
     <tr>
     <td>Ventas</td>
     <?php $total4=0; while($row4 = mysqli_fetch_array($resultado4)){$total4=$total4+$row4['total_venta'];} ?>
-    <?php $total3=0; while($row3 = mysqli_fetch_array($resultado3)){$total3=$total3+$row3['cantidad'];} ?>
     <td><?php echo $total4  ?></td> 
     </tr>
 
+    <tr>
+    <td>Recargas:</td>
+    <?php $total3=0; while($row3 = mysqli_fetch_array($resultado3)){$total3=$total3+$row3['cantidad'];}
+    $totalr=0; while($rowr = mysqli_fetch_array($rrecargas)){$totalr=$totalr+$rowr['cantidad'];} ?>
+    
+    <td><?php echo $total3;  ?></td> 
+    </tr>
+
+
+
+    
       <tr>
-        <th><h2 style="color:#9C2C2E">Ingresos X: $<?php echo $total1+$total2+$total5;?> </h2><h2 style="color:#9C2C2E">Ventas: $<?php echo $total4;?> </h2></h2><h2 style="color:#9C2C2E">Recargas turno anterior: $<?php echo $total3;?> </h2><br><i style="color:#CB2629">Nota: Las recargas se encuentrar dentro de la contabilidad, solo se muestra para que pueda sacar el total de la misma y ponerlo de forma individual, los Ingresos X y las ventas se encuentran dentro de la contabilidad, por lo cual hay que ponerlo aparte.</i></th>  
+        <th>
+        <h2 style="color:#9C2C2E">Total Registrado: $<?php echo $total1+$total2+$total3+$total4+$total5;?> </h2>
+        <h2>Total en recargas normales: <?php echo $totalr;?></h2>
+        <i style="color:#CB2629">Nota: Los ingresos registrados se encuentran dentro de la contabilidad por lo que ya no hay que registrarlos, El total de las recargas normales tiene que coincidir con el total de la misma en la plataforma.</i></th>  
         <th><a href="consultaingresonegocio-vista.php"  class="btn btn-danger"> Verificar Ingresos</a><a href="informe-venta.php"  class="btn btn-warning"> Verificar Ventas </a></th>
     
      </tr>
@@ -94,12 +111,6 @@ $resultado5 = mysqli_query($conn,$query5);
 
         <div class="form-group">
         <input type="number" name="cantidadn" class="form-control" placeholder="Cantidad" autofocus>
-        </div>
-
-        <br><h3>Recargas</h3>
-
-        <div class="form-group">
-        <input type="number" name="cantidadr" class="form-control" placeholder="Cantidad" autofocus>
         </div>
 
         <i style="color:#CB2629">Nota: Tener pendiente los datos ingresados, debido a que no se pueden editar y despues de guardados no se puede volver a guardar.</i>  
@@ -156,5 +167,5 @@ else {
     
 
 <?php include ("frontend/footer.php");
-}
+
 ?>
