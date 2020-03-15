@@ -1,85 +1,122 @@
 <?php include("frontend/header.php"); 
- 
+
 if(!isset($_SESSION['rol'])) {header('location: login.php');}
 
-//Eliminar articulo
 
-if((isset($_POST['eliminar'])) and ($_POST['eliminar'] >= 1)){
-  $temp2 = $_POST['eliminar']; 
-$quer2 = "DELETE FROM factura  WHERE num_factura = '$temp2'";
-mysqli_query($conn,$quer2);
-$_POST['eliminar']='';
-}
-
-
-//consulta
-
-$quer2 = "SELECT * FROM factura ORDER BY factura asc";
-$resulta = mysqli_query($conn,$quer2);
-while($row = mysqli_fetch_array($resulta)){$numero_factura = $row['factura']; }
-
-//Nueva factura
-if((isset($_POST['nuevaf']))){
-$numero_factura = $numero_factura + 1;
-}
+$error = '';  
+if (isset($_POST['anadir'])){
+    $socio = $_SESSION['nombre'];
+    $idarticulo = $_POST['anadir'];
+    $pventa = $_POST['precioventa'.$idarticulo];
+    $cantidad = $_POST['cantidad'.$idarticulo];
 
 
-$query = "SELECT f.num_factura,f.factura,a.articulo,a.precio_venta,f.cantidad,f.rebaja,f.total_venta FROM articulos a inner join factura f on a.id_articulo = f.l_id_articulo where  f.factura = '$numero_factura'";
-$resultado = mysqli_query($conn,$query);
-?>
+    $exis = "SELECT * FROM articulos WHERE id_articulo = '$idarticulo'";
+    $resulta = mysqli_query($conn,$exis);
+    while($row = mysqli_fetch_array($resulta)){$idarticulo = $row['id_articulo']; $disponible = $row['existencia']; $pcompra =  $row['precio_compra']; }
+    
+    $total_venta = ($pventa * $cantidad);
+    $pcompra = $pcompra * $cantidad;
+    $total_ganancia = ($total_venta - $pcompra);
 
-<!--Mensaje de que se a;adio o modifico el articulo-->
-<?php   
-        if(isset($_SESSION['message'])) { 
-        if(($_SESSION['message']) != ($_SESSION['message_type'])){?>
-        <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
-        <?= $_SESSION['message'] ?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <?php }} $_SESSION['message_type']=''; $_SESSION['message']=''; 
+    if($disponible == 0){
+        $_SESSION['message'] = 'Este articulo no se encuentra disponible';
+        $_SESSION['message_type'] = 'danger';
+        $error = '1222';
+    }
 
-?>
+    if($cantidad <= -1){
+      $_SESSION['message'] = 'Por favor ingresar valores positivos';
+      $_SESSION['message_type'] = 'danger';
+      $error = '1222';
+    }
+
+  if ($error == ''){
+
+       
+        
+        $query = "INSERT INTO FACTURA(l_id_articulo,cantidad,socio,total_venta,total_invertido,total_ganancia) value ('$idarticulo','$cantidad','$socio','$total_venta','$pcompra','$total_ganancia')";
+        $resulta = mysqli_query($conn,$query);
+        
+        $cantidad = $disponible - $cantidad;
+        $quer = "UPDATE articulos SET  existencia = '$cantidad' WHERE id_articulo = '$idarticulo'";
+        mysqli_query($conn,$quer);
+     
+        $_SESSION['message'] = 'Articulo Añadido';
+        $_SESSION['message_type'] = 'primary';
+
+
+        
+  }?>
+
+
+  <?php }?>
+
+
 <br>
 <div class="container">
 <div class="card card-body ">
-<form action="factura-vista.php" method="post">
-  <h2>Factura: #<?php echo $numero_factura;?> <button class="btn btn-danger"  name="nuevaf"  type="submit" > Nueva Factura </button></h2>
-    <p>Vendemos los mejores articulos al mejor precio</p> 
-  <a href="afactura-vista.php?id=<?php echo $numero_factura;?>" class="btn btn-success"> Añadir articulo   </a>
-   
-  </h2> 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>factura#</th>
-        <th>Producto</th>
-        <th>Precio</th>
-        <th>Cantidad</th>
-        <th>rebaja</th>
-        <th>Sub Total </th>
-         <th>Opciones</th>
-      </tr>
-    </thead>
-    <?php $total=0; while($row = mysqli_fetch_array($resultado)){ ?>
-      <tr>
-        <td><?php echo $row['factura']?></td>
+<div class="col-sm-5">
+<form action="factura-vista.php" method="POST">
+
+<h2><i class="fa fa-shopping-bag fa-1x"></i> Ventas</h2>
+<br>
+<div class="form-group d-inline-block align-top"> 
+   <input type="text" name="informacion" class="form-control" placeholder="Nombre del articulo">
+</div>  
+<button class="btn btn-info d-inline-block align-top" type="submit" name="buscar"><label class="lnr lnr-enter-down "  ></label> Buscar Articulo </button>  
+</div>  
+<!--Consulta buscar curso-->
+
+<?php if(isset($_POST['buscar'])){ 
+$nombre = $_POST['informacion']; 
+$query = "SELECT * FROM articulos where articulo like '%$nombre%'";}
+else
+{
+    $query = "SELECT * FROM articulos";
+}
+$resultado = mysqli_query($conn,$query); ?>
+<h6>Listado detallado de articulos</h6>
+<table class="table ">
+<thead>
+  <tr>
+    <th>Articulo</th>
+    <th>Detalle</th>
+    <th width="3">Cantidad</th>
+    <th>P-Venta</th>
+    <th>Existencia</th>
+    <th>Opciones</th>
+  </tr>
+</thead>
+
+<?php $total=0;while($row = mysqli_fetch_array($resultado)){ ?>
+<div>
+<tr>
         <td><?php echo $row['articulo']?></td>
-        <td><?php echo $row['precio_venta']?></td>
-        <td><?php echo $row['cantidad']?></td>
-        <td><?php echo $row['rebaja']?></td>
-        <td><?php echo $row['total_venta']; ?></td>
-       
-       
+        <td><?php echo $row['detalle']?></td>
+        <td><input type="number" name="cantidad<?php echo $row['id_articulo']?>" class="form-control" value="1"></td>
         <td>
-        <button class="btn btn-danger"  name="eliminar" value="<?php echo $row['num_factura']; $total = $total+$row['total_venta']; ?>" type="submit">Eliminar</button>      
-        </td>    
+        
+        <select class="form-control" name = "precioventa<?php echo $row['id_articulo']?>">
+        
+                    <option  value="<?php echo $row['precio_venta']?>" ><?php echo $row['precio_venta']?></option>
+                    <option value="<?php echo $row['precio_medio']?>" ><?php echo $row['precio_medio']?></option>
+                    <option value="<?php echo $row['precio_minimo']?>" ><?php echo $row['precio_minimo']?></option>
+                    
+        </select>
+        <td style="color:#FD3C40; font-size:30px"><?php echo $row['existencia']?></td>
+        <td>
+          <button class="btn btn-success" type="submit" name="anadir" value="<?php echo $row['id_articulo']?>" >Añadir</button> 
+        </td> 
         </tr>
-    <?php }?>
-        <td><h2>Total: RD$<?php ;echo $total;?></h2></td>
-  </table>
+        </div>
+        <?php  } ?>
+
+      
+    
+  </table>  
+</form>
 </div>
 </div>
-<?php 
-include ("frontend/footer.php")?>
+</div>
+<?php include ("frontend/footer.php")?>
