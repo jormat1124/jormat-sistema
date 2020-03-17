@@ -24,7 +24,7 @@ $numero_factura = $numero_factura + 1;
 }
 
 
-$query = "SELECT f.num_factura,f.factura,a.articulo,a.precio_venta,f.cantidad,f.rebaja,f.total_venta FROM articulos a inner join factura f on a.id_articulo = f.l_id_articulo where  f.factura = '$numero_factura'";
+$query = "SELECT f.num_factura,a.articulo,a.precio_venta,f.cantidad,f.rebaja,f.total_venta FROM articulos a inner join factura f on a.id_articulo = f.l_id_articulo ";
 $resultado = mysqli_query($conn,$query);
 ?>
 
@@ -64,7 +64,7 @@ $resultado = mysqli_query($conn,$query);
     </thead>
     <?php $total=0; while($row = mysqli_fetch_array($resultado)){ ?>
       <tr>
-        <td><?php echo $row['factura']?></td>
+        
         <td><?php echo $row['articulo']?></td>
         <td><?php echo $row['precio_venta']?></td>
         <td><?php echo $row['cantidad']?></td>

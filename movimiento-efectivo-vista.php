@@ -3,15 +3,20 @@
 
 if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1: 
 
-    $qrconsulta = "SELECT * FROM ingreso where estado='caja'";
+    $qrconsulta = "SELECT * FROM ingreso where estado='negocio'";
     $estado = "Negocio";
 if(isset($_POST['dinerocaja'])){
     $qrconsulta = "SELECT * FROM ingreso where estado='caja'";  
     $estado = "Caja";
   }
-  if(isset($_POST['dineroprestado'])){
+if(isset($_POST['dineroprestado'])){
     $qrconsulta = "SELECT * FROM ingreso where estado='prestado'";
     $estado = "Prestado";  
+  }
+
+if(isset($_POST['dineronegocio'])){
+  $qrconsulta = "SELECT * FROM ingreso where estado='negocio'";
+  $estado = "Negocio";
   }
   
 
@@ -31,8 +36,9 @@ if(isset($_POST['dinerocaja'])){
 
 <form action="movimiento-efectivo-vista.php" method="POST">
 
+<button  class="btn btn-dark" type="submit" title="Mostrar dinero en negocio"name="dineronegocio"><i class="fa fa-building" aria-hidden="true"></i> Negocio </button> 
 <button  class="btn btn-warning" type="submit" title="Mostrar dinero en Caja" name="dinerocaja"><i class="fa fa-hourglass-end" aria-hidden="true"></i>En caja</button> 
-<button  class="btn btn-danger" type="submit" title="Mostrar dinero en negocio"name="dineroprestado"><i class="fa fa-paper-plane" aria-hidden="true"></i>Prestado </button> 
+<button  class="btn btn-danger" type="submit" title="Mostrar dinero prestado"name="dineroprestado"><i class="fa fa-paper-plane" aria-hidden="true"></i>Prestado </button> 
 
 
 </form>
