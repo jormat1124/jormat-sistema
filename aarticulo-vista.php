@@ -24,22 +24,27 @@ if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:
 
         <div class="form-group">
         <label for="exampleInputEmail1">P.Venta</label>
-        <input type="text" name="venta" class="form-control" placeholder="Venta" autofocus>
+        <input type="number" name="venta" class="form-control" placeholder="Venta" autofocus>
+        </div>
+
+        <div class="form-group">
+        <label for="exampleInputEmail1">P.Medio</label>
+        <input type="number" name="medio" class="form-control" placeholder="Minimo" autofocus>
         </div>
 
         <div class="form-group">
         <label for="exampleInputEmail1">P.Minimo</label>
-        <input type="text" name="minimo" class="form-control" placeholder="Minimo" autofocus>
+        <input type="number" name="minimo" class="form-control" placeholder="Minimo" autofocus>
         </div>
 
         <div class="form-group">
         <label for="exampleInputEmail1">P.Compra</label>
-        <input type="text" name="compra" class="form-control" placeholder="Compra" autofocus>
+        <input type="number" name="compra" class="form-control" placeholder="Compra" autofocus>
         </div>
 
         <div class="form-group">
         <label for="exampleInputEmail1">Existencia</label>
-        <input type="text" name="existencia" class="form-control" placeholder="Existencia" autofocus>
+        <input type="number" name="existencia" class="form-control" placeholder="Existencia" autofocus>
         </div>
 
         <div class="form-group">

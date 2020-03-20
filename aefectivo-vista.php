@@ -27,7 +27,7 @@
       
 
         <div class="form-group">
-        <input type="text" name="cantidad" class="form-control" placeholder="Cantidad" autofocus>
+        <input type="number" name="cantidad" class="form-control" placeholder="Cantidad" autofocus>
         </div>
 
         <br><h3>Detalle*</h3>

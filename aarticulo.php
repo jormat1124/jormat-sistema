@@ -7,6 +7,7 @@ if(isset($_POST['save'])){
     $articulo = $_POST['articulo'];
     $detalle = $_POST['detalle'];
     $pventa = $_POST['venta'];
+    $pmedio = $_POST['medio'];
     $pminimo = $_POST['minimo'];
     $pcompra = $_POST['compra'];
     $cantidad = $_POST['existencia'];
@@ -28,7 +29,7 @@ if(isset($_POST['save'])){
 
    if ($error == ''){
        
-    $query = "INSERT INTO articulos(articulo,detalle,precio_venta,precio_minimo,precio_compra,existencia,proveedor) values ('$articulo','$detalle','$pventa','$pminimo','$pcompra','$cantidad','$proveedor')";
+    $query = "INSERT INTO articulos(articulo,detalle,precio_venta,precio_medio,precio_minimo,precio_compra,existencia,proveedor) values ('$articulo','$detalle','$pventa','$pmedio','$pminimo','$pcompra','$cantidad','$proveedor')";
     $result = mysqli_query($conn,$query);
 
     $_SESSION['message'] = 'Información Guardada correctamente';
