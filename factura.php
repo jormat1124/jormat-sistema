@@ -48,19 +48,5 @@ if (isset($_POST['anadir'])){
         $_SESSION['message'] = 'Articulo vendido correctamente :)';
         $_SESSION['message_type'] = 'success';
         header('location: informe-venta.php');
-  }}
-  
-  
-if (isset($_POST['eliminar'])){
-    $socio = $_SESSION['nombre'];
-    $idarticulo = $_POST['anadir'];
-    $pventa = $_POST['precioventa'.$idarticulo];
-    $cantidad = $_POST['cantidad'.$idarticulo];
-
-
-    $exis = "SELECT * FROM articulos WHERE id_articulo = '$idarticulo'";
-    $resulta = mysqli_query($conn,$exis);
-    while($row = mysqli_fetch_array($resulta)){$idarticulo = $row['id_articulo']; $disponible = $row['existencia']; $pcompra =  $row['precio_compra']; }
-    
-  
-  ?>
+        
+  }}?>

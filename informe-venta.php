@@ -4,7 +4,7 @@ ini_set('date.timezone','America/Santo_Domingo');
 
 $fecha = date("Y-m-d",time());
 $hora = " 23:55:00";
-$hora1 = " 05:00:00";
+$hora1 = " 00:00:02";
 
 $fecha1 = $fecha.$hora1;
  $fecha2 = $fecha.$hora;
@@ -41,7 +41,7 @@ $resultado = mysqli_query($conn,$query);
 <div class="card card-body ">
 <form action="informe-venta.php" method="post">
   
-    <h2>Informe de ventas</h2> 
+    <h2><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Informe de ventas</h2> 
   <i>Estas son las ventas pertenecientes a usted en este día</i>
    
   </h2> 

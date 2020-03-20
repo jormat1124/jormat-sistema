@@ -69,7 +69,7 @@
 
                     <li>
                     <a href="factura-vista.php"><i class="fa fa-shopping-bag"></i> Vender</a>
-                    <a  href="articulo-vista.php" > <i class="fa fa-plus-circle" aria-hidden="true"></i> Articulos</a>
+                    <a  href="articulo-vista.php" > <i class="fa fa-cogs" aria-hidden="true"></i> Articulos</a>
                     </li>
                     
                     </ul>
