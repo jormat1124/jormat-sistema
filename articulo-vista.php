@@ -53,10 +53,11 @@ $resultado = mysqli_query($conn,$query); ?>
     <th width="20%">Articulo</th>
     <th>Detalle</th>
     <th width="9%">Precio Venta</th>
-    <th width="9%">Existencia</th>
+    <th width="9%">Precio Medio</th>
      <th width="9%">Precio Minimo</th>
     <th width="9%">Precio Compra</th>
     <th>Proveedor</th>
+    <th width="8%">Existencia</th>
     <th style="color:#FD3C40; " width="9%">Nueva Cantidad</th>
     <th style="color:#FD3C40; " width="9%">Precio Compra</th>
     <th width="15%">Opciones</th>
@@ -69,15 +70,16 @@ $resultado = mysqli_query($conn,$query); ?>
 <td><input type="text" name="articulo<?php echo $row['id_articulo']?>" class="form-control" value="<?php echo $row['articulo']?>"></td>
 <td><input type="text" name="detalle<?php echo $row['id_articulo']?>" class="form-control" value="<?php echo $row['detalle']?>"></td>
 <td><input type="number" name="precio_venta<?php echo $row['id_articulo']?>" class="form-control" value="<?php echo $row['precio_venta']?>"></td>
-<td style="color:#FD3C40; font-size:30px"><?php echo $row['existencia']?></td>
+<td><input type="number" name="precio_medio<?php echo $row['id_articulo']?>" class="form-control" value="<?php echo $row['precio_medio']?>"></td>
 <td><input type="number" name="precio_minimo<?php echo $row['id_articulo']?>" class="form-control" value="<?php echo $row['precio_minimo']?>"></td>
 <td><input type="number" name="precio_compra<?php echo $row['id_articulo']?>" class="form-control" value="<?php echo $row['precio_compra']?>"></td>
 <td><input type="text" name="proveedor<?php echo $row['id_articulo']?>" class="form-control" value="<?php echo $row['proveedor']?>"></td>
+<td style="color:#FD3C40; font-size:30px"><?php echo $row['existencia']?></td>
 <td><input type="number" name="ncantidad<?php echo $row['id_articulo']?>" class="form-control" value="0"></td>
 <td><input type="number" name="nprecio<?php echo $row['id_articulo']?>" class="form-control" value="0"></td>
 
 <td >
-          <button class="btn btn-primary" type="submit" name="anadir" title="Añadir Nueva Cantidad"value="<?php echo $row['id_articulo']?>" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button> 
+          <button class="btn btn-primary" type="submit" name="save" title="Añadir Nueva Cantidad"value="<?php echo $row['id_articulo']?>" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button> 
           <button class="btn btn-warning" type="submit" name="editar" title="Editar Articulo" value="<?php echo $row['id_articulo']?>" ><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></button> 
           <button class="btn btn-danger" type="submit" name="eliminar"title="Eliminar Articulo"  value="<?php echo $row['id_articulo']?>" ><i class="fa fa-trash" aria-hidden="true"></i></button> 
 </td> 

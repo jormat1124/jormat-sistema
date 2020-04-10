@@ -95,11 +95,8 @@
                 <li class="active">
                     <a href="#mhogares" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-home" aria-hidden="true"></i> Hogares</a>
                     <ul class="collapse list-unstyled" id="mhogares">
-                        <li>
-                            <a href="#">En proceso</a>
-                        </li>
-                     
-                    </ul>
+                    <li class="nav-item- active"><a class=" nav-link"href="anadir-h-vista.php"><i class="fa fa-university" aria-hidden="true"></i> Añadir Cliente </a></li>
+                   </ul>
                 </li>
                 <li class="active">
                     <a href="#minformes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-chart-bar"></i> Informes</a>

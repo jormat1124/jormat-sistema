@@ -9,9 +9,8 @@ if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1:
         <form action="aarticulo.php" method="post">
         <h1>Nuevo Articulo</h1>
         <p>Por favor ingrese los articulos con cuidado debido a que no se pueden eliminar</p>
-            
-        
-       <br>
+
+        <br> 
         <div class="form-group">
         <label for="exampleInputEmail1">Articulo</label>
         <input type="text" name="articulo" class="form-control" placeholder="Articulo" autofocus>

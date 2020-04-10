@@ -3,7 +3,44 @@
 
 
 //En proceso, Aun falta editar
-if (isset($_POST['save'])){
+if (isset($_POST['editar'])){
+    $id_articulo = $_POST['editar'];
+
+//Consulta de los articulos
+$temp2 = $_POST['editar']; 
+$quer3 = "select * FROM articulos WHERE id_articulo  = '$temp2'";
+$consulta = mysqli_query($conn,$quer3);
+while($row = mysqli_fetch_array($consulta)){ 
+    
+    $articulo= $row['articulo'];
+    $precioventa=$row['precio_venta'];
+    $preciomedio=$row['precio_medio'];
+    $preciominimo=$row['precio_minimo'];
+    $preciocompra=$row['precio_compra'];
+    $existencia=$row['existencia'];
+    $proveedor=$row['proveedor'];
+}
+// Recogiendo los datos enviados.
+
+    $carticulo = $_POST['articulo'.$id_articulo];
+    $cdetalle = $_POST['detalle'.$id_articulo];
+    $cprecioventa = $_POST['precio_venta'.$id_articulo];
+    $cprecio_medio = $_POST['precio_medio'.$id_articulo];
+    $cprecio_minimo = $_POST['precio_minimo'.$id_articulo];
+    $cprecio_compra = $_POST['precio_compra'.$id_articulo];
+    $cproveedor = $_POST['proveedor'.$id_articulo];
+    
+  //Ejecucion de consultas para guardar la edicion
+
+    
+:<!- ->
+  
+
+/*
+
+
+
+
      if(($_POST['save'])!=($_POST['cantidad'])){
       $error = '';   
     $articulo = $_POST['save'];
@@ -30,7 +67,7 @@ if (isset($_POST['save'])){
         $_POST['cantidad'] = '';
     
   }
-}}  ?>
+}*/}  ?>
 
 <!--Eliminar articulo-->
 <?php if(isset($_POST['eliminar'])){ 

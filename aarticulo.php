@@ -2,7 +2,6 @@
 
 if(isset($_SESSION['rol'])) {switch($_SESSION['rol']){case 1: 
 
-$error = '';
 if(isset($_POST['save'])){
     $articulo = $_POST['articulo'];
     $detalle = $_POST['detalle'];
@@ -24,7 +23,7 @@ if(isset($_POST['save'])){
     if($cantidad <= '1'){
         $_SESSION['message'] = 'Por favor ingresar datos positivos';
         $_SESSION['message_type'] = 'danger';
-        $error = '1222';}
+        $error = '1222'; }
 
 
    if ($error == ''){
@@ -34,14 +33,14 @@ if(isset($_POST['save'])){
 
     $_SESSION['message'] = 'Información Guardada correctamente';
     $_SESSION['message_type'] = 'success';
-
+    
     if(!$result){
         $_SESSION['message'] = 'Por favor verifique los datos ingresados';
         $_SESSION['message_type'] = 'danger';
-       ;}
+       }
     
    }
-   ;break;}}
+   break;}}
         header("location: articulo-vista.php");
 
 }
