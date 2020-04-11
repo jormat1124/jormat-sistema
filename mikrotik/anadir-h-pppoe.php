@@ -39,22 +39,16 @@ if ($API->connect(IP_MIKROTIK, USER, PASS)) {
             if(count($ARRAY)>0){ // si el nombre de usuario "ya existe" lo edito
                 $_SESSION['message'] = 'Error: El usuario no puede estar registrado dos veces.';
                 $_SESSION['message_type'] = 'danger';
-                $error = '1222';
+                $error = 1222;
             
             }
 
 
-            if ($error == ""){    
+            if ($error == 0){    
                     $query = "INSERT INTO usuario_h(cedula,nombre,apellido,celular,telefono,ubicacion,precio,plan,coresponde,dia_corte) values ('$cedula','$nombre','$apellido','$celular','$telefono','$ubicacion','$precio','$plan','$corresponde','$dia')";
                     $result = mysqli_query($conn,$query);
                     //ingreso al mikrotik
-                    $API->write("/ppp/secret/add",false);
-                    $API->write("=name=".$name,false);
-                    $API->write("=password=".$password,false);
-                    $API->write("=service=".$service,false);
-                    $API->write("=profile=".$plan,false);       
-                    $API->write("=comment=".$comentarios,true);
-                    $READ = $API->read(false);
+                    
                 
                     $_SESSION['message'] = ('!Guardado! Usuario: '.$name.' Contracena: '.$password);
                     $_SESSION['message_type'] = 'success';
@@ -65,6 +59,14 @@ if ($API->connect(IP_MIKROTIK, USER, PASS)) {
                         
                         header("location: ../anadir-h-vista.php");
         
+                       }else{
+                        $API->write("/ppp/secret/add",false);
+                        $API->write("=name=".$name,false);
+                        $API->write("=password=".$password,false);
+                        $API->write("=service=".$service,false);
+                        $API->write("=profile=".$plan,false);       
+                        $API->write("=comment=".$comentarios,true);
+                        $READ = $API->read(false);
                        }
                    
                    

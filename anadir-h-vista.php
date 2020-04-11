@@ -29,7 +29,7 @@ $API->debug = false;
         <br> 
         <div class="form-group">
         <label for="exampleInputEmail1">Cedula</label>
-        <input type="number" name="cedula" class="form-control" placeholder="Cedula" autofocus>
+        <input type="number" name="cedula" class="form-control" placeholder="Cedula" autofocus data-politespace data-grouplength="3,3,4">
         </div>
 
         <div class="form-group">
@@ -58,7 +58,7 @@ $API->debug = false;
         </div>
 
         <div class="form-group">
-        <label for="exampleInputEmail1">Precio</label>
+        <label for="exampleInputEmail1">Costo Plan</label>
         <input type="number" name="precio" class="form-control" placeholder="Precio" autofocus>
         </div>
 
@@ -107,8 +107,14 @@ $API->debug = false;
 
         <div class="form-group">
         <label for="exampleInputEmail1">Dia de Corte</label>
-        <input type="text" name="dia" class="form-control" placeholder="Dia de Corte" autofocus>
-        </div>
+        <select class="form-control" name = "dia">
+        
+        <option  value="15" >15</option>
+        <option value="30" >30</option> 
+    
+        
+</select>
+         </div>
 
             <br><br><input type="submit" class="btn btn-primary btn-block" name="save" value="Guardar"0  >
 
