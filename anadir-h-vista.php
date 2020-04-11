@@ -14,7 +14,7 @@ $API->debug = false;
 <div class="card-header">
 
         <form action="mikrotik/anadir-h-pppoe.php" method="post">
-        <h1>Registro Cliente</h1>
+        <h1><i class="fa fa-user-circle" aria-hidden="true"></i> Registro Cliente</h1>
         <p>Favor de percatarse bien de los datos del usuario antes de guardar</p>
 
         <br> 
@@ -45,12 +45,12 @@ $API->debug = false;
 
         <div class="form-group">
         <label for="exampleInputEmail1">Ubicación</label>
-        <input type="text" name="ubicación" class="form-control" placeholder="Ubicacion" autofocus>
+        <input type="text" name="ubicacion" class="form-control" placeholder="Ubicacion" autofocus>
         </div>
 
         <div class="form-group">
         <label for="exampleInputEmail1">Precio</label>
-        <input type="number" name="minimo" class="form-control" placeholder="Precio" autofocus>
+        <input type="number" name="precio" class="form-control" placeholder="Precio" autofocus>
         </div>
 
         <div class="form-group">
@@ -84,14 +84,14 @@ $API->debug = false;
         <label for="exampleInputEmail1">Corresponde</label>
         <select class="form-control" name = "corresponde">
         
-        <option  value="Tendido1" >Tendido-1</option>
-        <option value="Tendido2" >Tendido-2</option>
-        <option value="Tendido3" >Tendido-3</option>
-        <option value="Tendido4" >Tendido-4</option>
-        <option value="Tendido5" >Tendido-5</option>
-        <option value="Antena1" >Antena-1</option>
-        <option value="Antena2" >Antena-2</option>
-        <option value="Antena3" >Antena-3</option>
+        <option  value="tendido1" >Tendido-1</option>
+        <option value="tendido2" >Tendido-2</option>
+        <option value="tendido3" >Tendido-3</option>
+        <option value="tendido4" >Tendido-4</option>
+        <option value="tendido5" >Tendido-5</option>
+        <option value="antena1" >Antena-1</option>
+        <option value="antena2" >Antena-2</option>
+        <option value="antena3" >Antena-3</option>
         
 </select>
         </div>
