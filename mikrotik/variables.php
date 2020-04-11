@@ -26,8 +26,8 @@ $ref=mysqli_fetch_array($resultado,MYSQLI_ASSOC);
 //asignamos las variables desde la BD
 */
 $user_mkt = "admin";
-$pass_mkt = "1234";
-$ip_mkt ="10.0.4.1";
+$pass_mkt = "juanmartines1126";
+$ip_mkt ="10.0.40.1";
 //Definimos las variables de conexión de la consola mikrotik
 define('USER', $user_mkt);
 define('PASS', $pass_mkt);

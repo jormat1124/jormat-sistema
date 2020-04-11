@@ -12,6 +12,15 @@ $API->debug = false;
 
 <div class="card card-body ">
 <div class="card-header">
+<?php if(isset($_SESSION['message'])) { 
+        if(($_SESSION['message']) != ($_SESSION['message_type'])){?>
+        <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['message'] ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    <?php }}$_SESSION['message_type']=''; $_SESSION['message']=''; ?>
 
         <form action="mikrotik/anadir-h-pppoe.php" method="post">
         <h1><i class="fa fa-user-circle" aria-hidden="true"></i> Registro Cliente</h1>
