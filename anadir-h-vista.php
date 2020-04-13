@@ -8,6 +8,7 @@ $API = new routeros_api();
 $API->debug = false;
 
 
+
 ?>
 
 <div class="card card-body ">
@@ -56,17 +57,24 @@ $API->debug = false;
         <label for="exampleInputEmail1">Ubicación</label>
         <input type="text" name="ubicacion" class="form-control" placeholder="Ubicacion" autofocus>
         </div>
+        
+        </select>
 
         <div class="form-group">
-        <label for="exampleInputEmail1">Costo Plan</label>
-        <input type="number" name="precio" class="form-control" placeholder="Precio" autofocus>
+        <label for="exampleInputEmail1">Dia de Pago</label>
+        <select class="form-control" name = "dia">
+        <option value="30" >30</option>
+        <option  value="15" >15</option>
         </div>
+        
+        </select>
+
 
         <div class="form-group">
         <label for="exampleInputEmail1">Plan</label>
 
         <?php if ($API->connect(IP_MIKROTIK, USER, PASS)) {  ?>
-        <select name="plan" id="plan" class="form-control">
+        <select name="precio" id="precio" class="form-control">
                                     <?php 
                                     $API->write("/ppp/profile/getall",true);   
                                     $READ = $API->read(false);
@@ -83,10 +91,10 @@ $API->debug = false;
                                             echo "No hay Ningun Plan.";
                                         }
                                     ?>
-                                </select>
+                                
 
                                     <?php }else{echo "No esta conectado con el servidor";}?>
-
+            </select>
          </div>
 
         <div class="form-group">
@@ -101,20 +109,9 @@ $API->debug = false;
         <option value="antena1" >Antena-1</option>
         <option value="antena2" >Antena-2</option>
         <option value="antena3" >Antena-3</option>
-        
-</select>
-        </div>
+        </select>
 
-        <div class="form-group">
-        <label for="exampleInputEmail1">Dia de Corte</label>
-        <select class="form-control" name = "dia">
-        
-        <option  value="15" >15</option>
-        <option value="30" >30</option> 
-    
-        
-</select>
-         </div>
+        </div>
 
             <br><br><input type="submit" class="btn btn-primary btn-block" name="save" value="Guardar"0  >
 

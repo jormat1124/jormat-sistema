@@ -11,24 +11,62 @@ $API->debug = false;
 if ($API->connect(IP_MIKROTIK, USER, PASS)) {
     //Creacion Usuarios PPPoE Usermanager
     $cedula = $_POST['cedula'];
-    $nombre = strtolower($_POST['nombre']);
-    $apellido = strtolower($_POST['apellido']);
+    $nombre = str_replace(" ", "_",(strtolower($_POST['nombre'])));
+    $apellido = str_replace(" ", "_",(strtolower($_POST['apellido'])));
     $celular = $_POST['celular'];
     $telefono = $_POST['telefono'];
     $ubicacion = $_POST['ubicacion'];
-   $precio = $_POST['precio'];
+    //Manejo de los precios
+    $precio = $_POST['precio'];
+
+    if($precio == 1800){
+        $plan = "Plan5M";
+    }
+    if($precio == 1000){
+        $plan = "Plan5M";
+    }
+    if($precio == 800){
+        $plan = "Plan3M";
+    }
+    if($precio == 700){
+        $plan = "Plan2M";
+    }
+    if($precio == 600){
+        $plan = "Plan1.5M";
+    }
+    
+//Para enviar el plan al mikrotik
+    $planM = $precio;
+
    //Captura para registrar en mikrotik
-    $plan = $_POST['plan'];
+    
     $corresponde = $_POST['corresponde'];
     $dia = $_POST['dia'];
     $name = ($nombre.'_'.$apellido);
     $password = $corresponde;
     $service = "pppoe";
     $phone = ($celular.'-'.$telefono);
-    $profile = $plan;
-    $comentarios = ("Instalado el :".date('Y-m-d H:i:s')." Contactos: ".$phone." Ubicacion: ".$ubicacion);
+    $comentarios = ("Dia Pago: ".$dia." Contactos: ".$phone." Ubicacion: ".$ubicacion." Instalado el :".date('Y-m-d H:i:s'));
     $error = "";
+
+
+
     //validacion para entrar
+    if(strlen($cedula)!=11)
+    {
+        $_SESSION['message'] = 'Error: Verifique la cedula.';
+        $_SESSION['message_type'] = 'danger';
+        $error = 1222;  
+    }
+
+    if(strlen($celular)!=10)
+    {
+        $_SESSION['message'] = 'Error: Verifique el numero de telefono.';
+        $_SESSION['message_type'] = 'danger';
+        $error = 1222;  
+    }
+    
+
     if(isset($nombre) || isset($apellido) || isset($celular) || isset($ubicacion) || isset($precio)){
             //valido nombre usuario
             $API->write("/ppp/secret/getall",false);
@@ -64,7 +102,7 @@ if ($API->connect(IP_MIKROTIK, USER, PASS)) {
                         $API->write("=name=".$name,false);
                         $API->write("=password=".$password,false);
                         $API->write("=service=".$service,false);
-                        $API->write("=profile=".$plan,false);       
+                        $API->write("=profile=".$planM,false);       
                         $API->write("=comment=".$comentarios,true);
                         $READ = $API->read(false);
                        }
