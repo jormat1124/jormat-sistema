@@ -11,8 +11,8 @@ $API->debug = false;
 if ($API->connect(IP_MIKROTIK, USER, PASS)) {
     //Creacion Usuarios PPPoE Usermanager
     $cedula = $_POST['cedula'];
-    $nombre = str_replace(" ", "_",(strtolower($_POST['nombre'])));
-    $apellido = str_replace(" ", "_",(strtolower($_POST['apellido'])));
+    $nombre = strtolower($_POST['nombre']);
+    $apellido = strtolower($_POST['apellido']);
     $celular = $_POST['celular'];
     $telefono = $_POST['telefono'];
     $ubicacion = $_POST['ubicacion'];
@@ -42,7 +42,7 @@ if ($API->connect(IP_MIKROTIK, USER, PASS)) {
     
     $corresponde = $_POST['corresponde'];
     $dia = $_POST['dia'];
-    $name = ($nombre.'_'.$apellido);
+    $name = str_replace(" ", "_",(($nombre.'_'.$apellido)));
     $password = $corresponde;
     $service = "pppoe";
     $phone = ($celular.'-'.$telefono);

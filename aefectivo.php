@@ -130,8 +130,8 @@ while($row = mysqli_fetch_array($consultaavance)){
 // Para eliminar el descuento
 
 
-$quer2 = "DELETE FROM gastos WHERE id_gasto  = '$temp2'";
-mysqli_query($conn,$quer2);
+    $quer2 = "DELETE FROM gastos WHERE id_gasto  = '$temp2'";
+    mysqli_query($conn,$quer2);
 
 
 // Mensaje y redireccionamiento
